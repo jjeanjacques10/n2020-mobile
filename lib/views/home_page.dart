@@ -16,12 +16,23 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: <Widget>[
           Center(
-            child: BotListCard(image: '', name: 'Eliza', auth: ''),
+            child: BotListCard(
+              image: 'assets/images/logo.jpeg',
+              name: 'Eliza',
+              auth: '',
+            ),
+          ),
+          Center(
+            child: BotListCard(
+              image: 'assets/images/logo.jpeg',
+              name: 'Eliza',
+              auth: '',
+            ),
           ),
           Text(
             'Sugestões',
             style: TextStyle(
-              fontSize: 18,
+              fontSize: 25,
               fontWeight: FontWeight.bold,
             ),
           ),

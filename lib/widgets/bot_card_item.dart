@@ -19,94 +19,90 @@ class BotListCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 24, bottom: 40),
-      height: 250,
-      width: 450,
-      child: Stack(
-        children: <Widget>[
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              height: 150,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(25),
-                boxShadow: [
-                  BoxShadow(
-                    offset: Offset(0, 10),
-                    blurRadius: 33,
-                    color: Colors.grey[350],
-                  ),
-                ],
-              ),
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return BotPage();
+            },
           ),
-          Image.asset(
-            image,
-            width: 150,
-          ),
-          Positioned(
-            top: 160,
-            child: Container(
-              height: 85,
-              width: 202,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(left: 24),
-                    child: RichText(
-                      maxLines: 3,
-                      text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(
-                            text: "Precisa de um amigo? converse com a\n",
-                            style: TextStyle(
-                              fontSize: 13,
-                            ),
-                          ),
-                          TextSpan(
-                            text: "$name\n",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                        ],
-                      ),
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.all(20.0),
+        height: 150,
+        child: Stack(
+          children: <Widget>[
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Container(
+                height: 140,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(25),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 33,
+                      color: Colors.grey[350],
                     ),
-                  ),
-                  Spacer(),
-                  Row(
-                    children: <Widget>[
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) {
-                                return BotPage();
-                              },
-                            ),
-                          );
-                        },
-                        child: Container(
-                          width: 101,
-                          padding: EdgeInsets.symmetric(vertical: 10),
-                          alignment: Alignment.center,
-                          child: Text("Conversar"),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+            Positioned(
+              child: Container(
+                height: 205,
+                width: 360,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.asset(
+                            image,
+                            width: 100,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: RichText(
+                            maxLines: 3,
+                            text: TextSpan(
+                              style: TextStyle(color: Colors.black),
+                              children: [
+                                TextSpan(
+                                  text:
+                                      "Precisa de um amigo?\nconverse com a\n",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                TextSpan(
+                                  text: "$name\n",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 35,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

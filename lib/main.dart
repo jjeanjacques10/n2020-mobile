@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:n2020mobile/views/home_page.dart';
+import 'package:n2020mobile/views/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Goodbot',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      home: LoginPage(title: 'Flutter Login'),
     );
   }
 }
