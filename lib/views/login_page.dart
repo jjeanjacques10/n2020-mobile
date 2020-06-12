@@ -9,7 +9,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
+  TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -22,10 +22,10 @@ class _LoginPageState extends State<LoginPage> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Email",
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Precisamos do seu nome para o cadastro';
+          return 'O campo Email é obrigatório.';
         }
         return null;
       },
@@ -40,10 +40,10 @@ class _LoginPageState extends State<LoginPage> {
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
           hintText: "Senha",
           border:
-              OutlineInputBorder(borderRadius: BorderRadius.circular(32.0))),
+              OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
         if (value.isEmpty) {
-          return 'Precisamos do seu nome para o cadastro';
+          return 'O campo Senha é obrigatório.';
         }
         return null;
       },
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Container(
           color: Colors.white,
           child: Padding(
-            padding: const EdgeInsets.all(36.0),
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Form(
               key: formKey,
               child: Column(
@@ -65,75 +65,100 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 155.0,
+                    height: 160.0,
                     child: Image.asset(
                       "assets/images/logo.jpeg",
                       fit: BoxFit.contain,
                     ),
                   ),
-                  SizedBox(height: 45.0),
+                  SizedBox(height: 25.0),
                   emailField,
                   SizedBox(height: 25.0),
-                  TextFormField(
-                    obscureText: true,
-                    style: style,
-                    decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                        hintText: "Senha",
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(32.0))),
-                    validator: (value) {
-                      if (value.isEmpty) {
-                        return 'Precisamos do seu nome para o cadastro';
-                      }
-                      return null;
-                    },
-                    onSaved: (value) {
-                      // professorModel.nome = value;
-                    },
-                  ),
+                  passwordField,
                   SizedBox(
-                    height: 35.0,
+                    height: 25.0,
                   ),
-                  Material(
-                    elevation: 5.0,
-                    borderRadius: BorderRadius.circular(30.0),
-                    color: Colors.blue[600],
-                    child: RaisedButton(
-                      padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      child: Text("Login",
-                          textAlign: TextAlign.center,
-                          style: style.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold)),
-                      onPressed: () {
-                        if (formKey.currentState.validate()) {
-                          formKey.currentState.save();
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      RaisedButton(
+                        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        color: Colors.white,
+                        child: Text("Cadastrar",
+                            textAlign: TextAlign.center,
+                            style: style.copyWith(
+                                color: Colors.blue,
+                                fontWeight: FontWeight.w500)),
+                        onPressed: () {
+                          if (formKey.currentState.validate()) {
+                            formKey.currentState.save();
 
-                          //professorRepository.create(professorModel);
+                            //professorRepository.create(professorModel);
 
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) {
-                              return HomePage();
-                            }),
-                          );
-                        } else {
-                          scaffoldKey.currentState.showSnackBar(
-                            SnackBar(
-                              content: Text(
-                                'Não foi cadastrar um novo professor',
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return HomePage();
+                              }),
+                            );
+                          } else {
+                            scaffoldKey.currentState.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Não foi cadastrar um novo professor',
+                                ),
                               ),
-                            ),
-                          );
-                        }
-                      },
-                    ),
+                            );
+                          }
+                        },
+                      ),
+                      SizedBox(
+                        width: 15,
+                      ),
+                      RaisedButton(
+                        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                        color: Colors.blue,
+                        child: Text("Entrar",
+                            textAlign: TextAlign.center,
+                            style: style.copyWith(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500)),
+                        onPressed: () {
+                          if (formKey.currentState.validate()) {
+                            formKey.currentState.save();
+
+                            //professorRepository.create(professorModel);
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) {
+                                return HomePage();
+                              }),
+                            );
+                          } else {
+                            scaffoldKey.currentState.showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                  'Não foi cadastrar um novo professor',
+                                ),
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    ],
                   ),
                   SizedBox(
-                    height: 15.0,
+                    width: 15,
                   ),
+                  FlatButton(
+                    child: Text(
+                      'Esqueci minha senha',
+                      style: TextStyle(
+                          color: Colors.grey, fontWeight: FontWeight.w400),
+                    ),
+                    onPressed: () {},
+                  )
                 ],
               ),
             ),
