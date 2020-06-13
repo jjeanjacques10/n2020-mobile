@@ -1,46 +1,36 @@
-import 'dart:convert';
-
-class AlunoModel {
-  int id;
+class SuggestionModel {
+  String id;
   String title;
-  int type;
+  String type;
   String description;
   String url;
   String imageUrl;
-  String idCategories;
 
-  AlunoModel({
-    this.id,
-    this.title,
-    this.type,
-    this.description,
-    this.url,
-    this.imageUrl,
-    this.idCategories,
-  });
+  SuggestionModel(
+      {this.id,
+      this.title,
+      this.type,
+      this.description,
+      this.url,
+      this.imageUrl});
 
-  factory AlunoModel.fromJson(String str) =>
-      AlunoModel.fromMap(json.decode(str));
+  SuggestionModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    title = json['title'];
+    type = json['type'];
+    description = json['description'];
+    url = json['url'];
+    imageUrl = json['image_url'];
+  }
 
-  String toJson() => json.encode(toMap());
-
-  factory AlunoModel.fromMap(Map<String, dynamic> json) => AlunoModel(
-        id: json["id"],
-        title: json["title"],
-        type: json["type"],
-        description: json["description"],
-        url: json["url"],
-        imageUrl: json["imageUrl"],
-        idCategories: json["idCategories"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "title": title,
-        "type": type,
-        "description": description,
-        "url": url,
-        "imageUrl": imageUrl,
-        "idCategories": idCategories,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['type'] = this.type;
+    data['description'] = this.description;
+    data['url'] = this.url;
+    data['image_url'] = this.imageUrl;
+    return data;
+  }
 }

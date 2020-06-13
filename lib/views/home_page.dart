@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:n2020mobile/widgets/bot_card_item.dart';
 import 'package:n2020mobile/widgets/suggestion_card_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -156,30 +155,35 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Container(
-                      margin: EdgeInsets.only(top: 20, left: 22),
+                      margin: EdgeInsets.only(top: 35, left: 22),
                       child: Text(
                         "Sugestões:",
                         style: TextStyle(
-                            color: Colors.grey[600], fontSize: width * 0.04),
+                            color: Colors.grey[600], fontSize: width * 0.045),
                       ),
                     ),
                   ],
                 )),
+                SizedBox(height: 15),
             Padding(
               padding: EdgeInsets.only(
-                  left: width * 0.04, right: width * 0.04, top: 0),
-              child: SizedBox(
-                width: width,
-                height: height,
-                child: ListView.builder(
-                  itemCount: 7,
-                  itemBuilder: (ctx, index) {
-                    return SuggestionCardItem(
-                        type: "Podcast",
-                        name: index.toString() + " Jovem Nerd",
-                        height: height,
-                        width: width);
-                  },
+                  left: width * 0.04, right: width * 0.04),
+              child: Expanded(
+                child: SizedBox(
+                  child: MediaQuery.removePadding(
+                    context: context,
+                    removeTop: true,
+                    child: ListView.builder(
+                      itemCount: 7,
+                      itemBuilder: (ctx, index) {
+                        return SuggestionCardItem(
+                            type: "Podcast",
+                            name: index.toString() + " Jovem Nerd",
+                            height: height,
+                            width: width);
+                      },
+                    ),
+                  ),
                 ),
               ),
             ),
