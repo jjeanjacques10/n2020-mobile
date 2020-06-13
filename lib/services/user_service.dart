@@ -1,17 +1,16 @@
 import 'package:dio/dio.dart';
-import 'package:n2020mobile/models/suggestions_model.dart';
+import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
-class SuggestionService {
-  static final String _endpoint =
-      "https://5ee2227c8b27f30016094649.mockapi.io/";
+class UserService {
+  static final String _endpoint = "";
 
-  static final String _resource = 'sugestoes';
+  static final String _resource = "";
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 
-  Future<List<SuggestionModel>> findAll() async {
-    List<SuggestionModel> lista = new List<SuggestionModel>();
+  Future<List<UserModel>> findAll() async {
+    List<UserModel> lista = new List<UserModel>();
 
     try {
       Response response = await service.create().get(_resource);
@@ -20,7 +19,7 @@ class SuggestionService {
           (value) {
             print(value);
             lista.add(
-              SuggestionModel.fromJson(value),
+              UserModel.fromJson(value),
             );
           },
         );
@@ -33,11 +32,11 @@ class SuggestionService {
     return lista;
   }
 
-  Future<int> create(SuggestionModel suggestionModel) async {
+  Future<int> create(UserModel userModel) async {
     try {
       Response response = await service.create().post(
             _resource,
-            data: suggestionModel.toJson(),
+            data: userModel.toJson(),
           );
 
       if (response.statusCode == 201) {
@@ -52,13 +51,13 @@ class SuggestionService {
     }
   }
 
-  Future<SuggestionModel> getById(int id) async {
+  Future<UserModel> getById(int id) async {
     try {
       String endpoint = _resource + "/" + id.toString();
       Response response = await service.create().get(endpoint);
 
       if (response.statusCode == 200) {
-        var retorno = SuggestionModel.fromJson(response.data);
+        var retorno = UserModel.fromJson(response.data);
         return retorno;
       }
     } catch (error) {
@@ -67,13 +66,13 @@ class SuggestionService {
     }
   }
 
-  Future<int> update(SuggestionModel suggestionModel) async {
+  Future<int> update(UserModel userModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.id.toString();
+      String endpoint = _resource + "/" + userModel.id.toString();
 
       Response response = await service.create().put(
             endpoint,
-            data: suggestionModel.toJson(),
+            data: userModel.toJson(),
           );
 
       var retorno = (response.data["id"] is String)
@@ -86,9 +85,9 @@ class SuggestionService {
     }
   }
 
-  Future<void> delete(SuggestionModel suggestionModel) async {
+  Future<void> delete(UserModel userModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.id.toString();
+      String endpoint = _resource + "/" + userModel.id.toString();
 
       Response response = await service.create().delete(
             endpoint,

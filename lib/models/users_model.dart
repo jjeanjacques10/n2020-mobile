@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-class AlunoModel {
+class UserModel {
   int id;
   String photoUrl;
   int name;
@@ -8,7 +8,7 @@ class AlunoModel {
   String email;
   String password;
 
-  AlunoModel({
+  UserModel({
     this.id,
     this.photoUrl,
     this.name,
@@ -17,12 +17,12 @@ class AlunoModel {
     this.password,
   });
 
-  factory AlunoModel.fromJson(String str) =>
-      AlunoModel.fromMap(json.decode(str));
+  factory UserModel.fromJson(String str) =>
+      UserModel.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory AlunoModel.fromMap(Map<String, dynamic> json) => AlunoModel(
+  factory UserModel.fromMap(Map<String, dynamic> json) => UserModel(
         id: json["id"],
         photoUrl: json["photoUrl"],
         name: json["name"],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:n2020mobile/views/bot_page.dart';
 import 'package:n2020mobile/views/home_page.dart';
 import 'package:n2020mobile/views/login_page.dart';
 
@@ -17,7 +18,12 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(),
+      initialRoute: '/login',
+      routes: {
+        '/': (context) => HomePage(),
+        '/bot': (context) => BotPage(),
+        '/login': (context) => LoginPage()
+      },
     );
   }
 }

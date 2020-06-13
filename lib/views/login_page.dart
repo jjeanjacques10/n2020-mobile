@@ -94,12 +94,9 @@ class _LoginPageState extends State<LoginPage> {
                             formKey.currentState.save();
 
                             //professorRepository.create(professorModel);
-
-                            Navigator.push(
+                            Navigator.pushNamed(
                               context,
-                              MaterialPageRoute(builder: (context) {
-                                return HomePage();
-                              }),
+                              "/",
                             );
                           } else {
                             scaffoldKey.currentState.showSnackBar(

@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 class SuggestionCardItem extends StatelessWidget {
   final type;
   final name;
+  final image;
+  final url;
   final height;
   final width;
 
   const SuggestionCardItem({
     this.type,
     this.name,
+    this.image =
+        "https://www.bauducco.com.br/wp-content/uploads/2017/09/default-placeholder-1-2.png",
+    this.url,
     Key key,
     this.height,
     this.width,
@@ -45,8 +50,8 @@ class SuggestionCardItem extends StatelessWidget {
               children: [
                 Padding(
                   padding: EdgeInsets.all(3),
-                  child: Image.asset(
-                    'assets/images/logo.jpeg',
+                  child: Image.network(
+                    image,
                     fit: BoxFit.fitWidth,
                     width: width * 0.2,
                   ),
@@ -55,7 +60,7 @@ class SuggestionCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Podcast",
+                      type,
                       textAlign: TextAlign.left,
                       style: TextStyle(
                           color: Colors.lightBlue[700],
@@ -71,7 +76,7 @@ class SuggestionCardItem extends StatelessWidget {
                           child: Container(
                             width: width * 0.6,
                             child: Text(
-                              "Jovem Nerd Nerd Nerd Nerd",
+                              name,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Colors.grey[600],
