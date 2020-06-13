@@ -3,9 +3,9 @@ import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class UserService {
-  static final String _endpoint = "";
+  static final String _endpoint = "https://api-n2020.herokuapp.com/";
 
-  static final String _resource = "";
+  static final String _resource = "user";
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 
@@ -59,6 +59,27 @@ class UserService {
       if (response.statusCode == 200) {
         var retorno = UserModel.fromJson(response.data);
         return retorno;
+      }
+    } catch (error) {
+      print("Service Error: $error ");
+      throw error;
+    }
+  }
+
+  Future<UserModel> getLogin(String email, String password) async {
+    try {
+      String endpoint =
+          _resource + "/login?password=${password}&email=${email}";
+      Response response = await service.create().get(endpoint);
+
+      if (response.statusCode == 200) {
+        print(response.data);
+        if (response.data[0].length != 0) {
+          var retorno = UserModel.fromJson(response.data[0]);
+          return retorno;
+        } else {
+          return null;
+        }
       }
     } catch (error) {
       print("Service Error: $error ");

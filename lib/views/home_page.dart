@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:n2020mobile/models/suggestions_model.dart';
+import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/suggestions_service.dart';
 import 'package:n2020mobile/widgets/suggestion_card_item.dart';
 
@@ -14,12 +15,15 @@ class _HomePageState extends State<HomePage> {
   var height;
   final GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
 
+  UserModel userModel;
+
   @override
   Widget build(BuildContext context) {
     final scaffoldKey = GlobalKey<ScaffoldState>();
     SuggestionService suggestionService = SuggestionService();
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+    userModel = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       key: _scafoldKey,
@@ -50,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   top: width * 0.18,
                   left: width * 0.085,
                   child: Text(
-                    "Olá, [name]",
+                    "Olá, ${userModel.name}",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: width * 0.07,

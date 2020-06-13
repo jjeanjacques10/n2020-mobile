@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:n2020mobile/models/users_model.dart';
 
 class UserSignUp extends StatefulWidget {
   @override
@@ -9,6 +10,8 @@ class _UserSignUpState extends State<UserSignUp> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  UserModel userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.name = value;
       },
     );
 
@@ -48,7 +51,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.email = value;
       },
     );
     final passwordField = TextFormField(
@@ -66,7 +69,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.password = value;
       },
     );
 
@@ -86,7 +89,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.phone = value;
       },
     );
 
@@ -105,7 +108,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+         userModel.photoUrl = value;
       },
     );
 
@@ -139,7 +142,7 @@ class _UserSignUpState extends State<UserSignUp> {
             ),
             phoneField,
             SizedBox(
-              height: padding*2,
+              height: padding * 2,
             ),
             RaisedButton(
               padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
