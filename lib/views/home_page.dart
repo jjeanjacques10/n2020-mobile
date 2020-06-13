@@ -206,12 +206,12 @@ class _HomePageState extends State<HomePage> {
                                 List<SuggestionModel> suggestions =
                                     snapshot.data;
                                 return ListView.builder(
-                                  itemCount: snapshot.data.length,
+                                  itemCount: suggestions.length,
                                   itemBuilder: (ctx, index) {
                                     return SuggestionCardItem(
                                         type: suggestions[index].type,
                                         name: suggestions[index].title,
-                                        //image: suggestions[index].imageUrl.toString(),
+                                        image: suggestions[index].imageUrl.toString(),
                                         url: suggestions[index].url,
                                         height: height,
                                         width: width);

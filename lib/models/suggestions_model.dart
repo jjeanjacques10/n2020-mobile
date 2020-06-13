@@ -1,36 +1,37 @@
 class SuggestionModel {
-  String id;
+  int id;
+  String description;
+  String imageUrl;
   String title;
   String type;
-  String description;
   String url;
-  String imageUrl;
 
-  SuggestionModel(
-      {this.id,
-      this.title,
-      this.type,
-      this.description,
-      this.url,
-      this.imageUrl});
+  SuggestionModel({
+    this.id,
+    this.description,
+    this.imageUrl,
+    this.title,
+    this.type,
+    this.url,
+  });
 
   SuggestionModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    description = json['description'];
+    imageUrl = json['image_url'];
     title = json['title'];
     type = json['type'];
-    description = json['description'];
     url = json['url'];
-    imageUrl = json['image_url'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['description'] = this.description;
+    data['image_url'] = this.imageUrl;
     data['title'] = this.title;
     data['type'] = this.type;
-    data['description'] = this.description;
     data['url'] = this.url;
-    data['image_url'] = this.imageUrl;
     return data;
   }
 }

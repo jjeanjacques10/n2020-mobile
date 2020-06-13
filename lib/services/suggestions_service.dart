@@ -4,9 +4,9 @@ import 'package:n2020mobile/services/service_config.dart';
 
 class SuggestionService {
   static final String _endpoint =
-      "https://5ee2227c8b27f30016094649.mockapi.io/";
+      "https://api-n2020.herokuapp.com/";
 
-  static final String _resource = 'sugestoes';
+  static final String _resource = 'suggestions';
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 

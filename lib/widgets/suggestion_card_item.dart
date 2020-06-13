@@ -32,7 +32,7 @@ class SuggestionCardItem extends StatelessWidget {
         vertical: 2.0,
       ),
       child: Container(
-        height: height * 0.16,
+        height: height * 0.20,
         width: width * 0.1,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -49,7 +49,7 @@ class SuggestionCardItem extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(3),
+                  padding: EdgeInsets.only(left: 12, right: 10),
                   child: Image.network(
                     image,
                     fit: BoxFit.fitWidth,
@@ -63,7 +63,7 @@ class SuggestionCardItem extends StatelessWidget {
                       type,
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Colors.lightBlue[700],
+                          color: colorTypeSuggestion(type),
                           fontSize: width * 0.042),
                     ),
                     Row(
@@ -99,5 +99,18 @@ class SuggestionCardItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color colorTypeSuggestion(typeSuggestion) {
+    switch (typeSuggestion) {
+      case "Livros":
+        return Colors.red[700];
+        break;
+      case "Música":
+        return Colors.green[700];
+        break;
+      default:
+        return Colors.lightBlue[700];
+    }
   }
 }
