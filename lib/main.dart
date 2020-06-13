@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:n2020mobile/views/home_page.dart';
 import 'package:n2020mobile/views/login_page.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginPage(title: 'Flutter Login'),
+      home: HomePage(),
     );
   }
 }
