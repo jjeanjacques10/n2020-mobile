@@ -164,7 +164,6 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 )),
-                
             Padding(
               padding: EdgeInsets.only(
                   left: width * 0.04, right: width * 0.04, top: 0),
@@ -174,7 +173,74 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                   itemCount: 1,
                   itemBuilder: (BuildContext ctx, int index) {
-                    return null;
+                    return Card(
+                      clipBehavior: Clip.antiAlias,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20.0),
+                      ),
+                      elevation: 5.0,
+                      margin: new EdgeInsets.symmetric(
+                        horizontal: 15.0,
+                        vertical: 6.0,
+                      ),
+                      child: Container(
+                        height: height * 0.16,
+                        width: width * 0.1,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.grey[400],
+                                  blurRadius: 5,
+                                  offset: Offset(0, 2))
+                            ]),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: width * 0.05,
+                                top: width * 0.04,                                
+                              ),
+                              child: Text(
+                                "Podcast",
+                                style: TextStyle(
+                                    color: Colors.lightBlue[700],
+                                    fontSize: width * 0.042),
+                              ),
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Padding(
+                                  padding: EdgeInsets.only(left: width * 0.05, top: width * 0.018),
+                                  child: Container(
+                                    width: width * 0.6,
+                                    child: Text(
+                                      "Jovem Nerd",
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: Colors.grey[600],
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: width * 0.06,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(
+                              height: height * 0.008,
+                            )
+                          ],
+                        ),
+                      ),
+                    );
                   },
                 ),
               ),
