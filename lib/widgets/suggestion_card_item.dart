@@ -44,7 +44,7 @@ class SuggestionCardItem extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(9),
+                  padding: EdgeInsets.all(3),
                   child: Image.asset(
                     'assets/images/logo.jpeg',
                     fit: BoxFit.fitWidth,
