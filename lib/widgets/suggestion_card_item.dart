@@ -29,7 +29,7 @@ class SuggestionCardItem extends StatelessWidget {
       elevation: 5.0,
       margin: new EdgeInsets.symmetric(
         horizontal: 7.0,
-        vertical: 2.0,
+        vertical: 5.0,
       ),
       child: Container(
         height: height * 0.20,

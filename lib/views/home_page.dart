@@ -114,37 +114,28 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(right: width * 0.04),
                               child: GestureDetector(
                                 onTap: () {
-                                  /* Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AddReceita()));
-                                 */
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/bot",
+                                  );
                                 },
-                                child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.pushNamed(
-                                      context,
-                                      "/bot",
-                                    );
-                                  },
-                                  child: Container(
-                                    width: width * 0.12,
-                                    height: width * 0.12,
-                                    decoration: BoxDecoration(
-                                        color: Colors.lightBlue[700],
-                                        borderRadius: BorderRadius.circular(50),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.grey,
-                                            blurRadius: 7,
-                                            offset: Offset(2, 2),
-                                          )
-                                        ]),
-                                    child: Icon(
-                                      Icons.chat,
-                                      size: width * 0.07,
-                                      color: Colors.white,
-                                    ),
+                                child: Container(
+                                  width: width * 0.12,
+                                  height: width * 0.12,
+                                  decoration: BoxDecoration(
+                                      color: Colors.lightBlue[700],
+                                      borderRadius: BorderRadius.circular(50),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey,
+                                          blurRadius: 7,
+                                          offset: Offset(2, 2),
+                                        )
+                                      ]),
+                                  child: Icon(
+                                    Icons.chat,
+                                    size: width * 0.07,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
@@ -181,7 +172,7 @@ class _HomePageState extends State<HomePage> {
               padding: EdgeInsets.only(left: width * 0.04, right: width * 0.04),
               child: Expanded(
                 child: SizedBox(
-                  height: height,
+                  height: height * 0.6,
                   child: MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
@@ -211,7 +202,9 @@ class _HomePageState extends State<HomePage> {
                                     return SuggestionCardItem(
                                         type: suggestions[index].type,
                                         name: suggestions[index].title,
-                                        image: suggestions[index].imageUrl.toString(),
+                                        image: suggestions[index]
+                                            .imageUrl
+                                            .toString(),
                                         url: suggestions[index].url,
                                         height: height,
                                         width: width);
@@ -228,24 +221,6 @@ class _HomePageState extends State<HomePage> {
                                 child: CircularProgressIndicator(),
                               );
                             }
-                          }
-                        },
-                      ),
-                      floatingActionButton: FloatingActionButton(
-                        backgroundColor: Color.fromRGBO(64, 75, 96, .9),
-                        child: Icon(Icons.add),
-                        onPressed: () async {
-                          var retorno = await Navigator.pushNamed(
-                              context, "/cursos_novo");
-
-                          if (retorno != null) {
-                            setState(() {});
-
-                            scaffoldKey.currentState.showSnackBar(
-                              SnackBar(
-                                content: Text(retorno),
-                              ),
-                            );
                           }
                         },
                       ),
