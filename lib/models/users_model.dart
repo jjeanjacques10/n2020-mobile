@@ -1,42 +1,37 @@
-import 'dart:convert';
-
-class AlunoModel {
+class UserModel {
   int id;
-  String photoUrl;
-  int name;
-  String phone;
   String email;
+  String name;
   String password;
+  String phone;
+  String photoUrl;
 
-  AlunoModel({
+  UserModel({
     this.id,
-    this.photoUrl,
-    this.name,
-    this.phone,
     this.email,
+    this.name,
     this.password,
+    this.phone,
+    this.photoUrl,
   });
 
-  factory AlunoModel.fromJson(String str) =>
-      AlunoModel.fromMap(json.decode(str));
+  UserModel.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    email = json['email'];
+    name = json['name'];
+    password = json['password'];
+    phone = json['phone'];
+    photoUrl = json['photoUrl'];
+  }
 
-  String toJson() => json.encode(toMap());
-
-  factory AlunoModel.fromMap(Map<String, dynamic> json) => AlunoModel(
-        id: json["id"],
-        photoUrl: json["photoUrl"],
-        name: json["name"],
-        phone: json["phone"],
-        email: json["email"],
-        password: json["password"],
-      );
-
-  Map<String, dynamic> toMap() => {
-        "id": id,
-        "photoUrl": photoUrl,
-        "name": name,
-        "phone": phone,
-        "email": email,
-        "password": password,
-      };
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['email'] = this.email;
+    data['name'] = this.name;
+    data['password'] = this.password;
+    data['phone'] = this.phone;
+    data['photoUrl'] = this.photoUrl;
+    return data;
+  }
 }

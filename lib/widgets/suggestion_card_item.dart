@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 class SuggestionCardItem extends StatelessWidget {
   final type;
   final name;
+  final image;
+  final url;
   final height;
   final width;
 
   const SuggestionCardItem({
     this.type,
     this.name,
+    this.image =
+        "https://www.bauducco.com.br/wp-content/uploads/2017/09/default-placeholder-1-2.png",
+    this.url,
     Key key,
     this.height,
     this.width,
@@ -24,10 +29,10 @@ class SuggestionCardItem extends StatelessWidget {
       elevation: 5.0,
       margin: new EdgeInsets.symmetric(
         horizontal: 7.0,
-        vertical: 6.0,
+        vertical: 5.0,
       ),
       child: Container(
-        height: height * 0.16,
+        height: height * 0.20,
         width: width * 0.1,
         decoration: BoxDecoration(
             color: Colors.white,
@@ -44,9 +49,9 @@ class SuggestionCardItem extends StatelessWidget {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.all(3),
-                  child: Image.asset(
-                    'assets/images/logo.jpeg',
+                  padding: EdgeInsets.only(left: 12, right: 10),
+                  child: Image.network(
+                    image,
                     fit: BoxFit.fitWidth,
                     width: width * 0.2,
                   ),
@@ -55,10 +60,10 @@ class SuggestionCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Podcast",
+                      type,
                       textAlign: TextAlign.left,
                       style: TextStyle(
-                          color: Colors.lightBlue[700],
+                          color: colorTypeSuggestion(type),
                           fontSize: width * 0.042),
                     ),
                     Row(
@@ -71,7 +76,7 @@ class SuggestionCardItem extends StatelessWidget {
                           child: Container(
                             width: width * 0.6,
                             child: Text(
-                              "Jovem Nerd Nerd Nerd Nerd",
+                              name,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: Colors.grey[600],
@@ -94,5 +99,18 @@ class SuggestionCardItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Color colorTypeSuggestion(typeSuggestion) {
+    switch (typeSuggestion) {
+      case "Livros":
+        return Colors.red[700];
+        break;
+      case "Música":
+        return Colors.green[700];
+        break;
+      default:
+        return Colors.lightBlue[700];
+    }
   }
 }

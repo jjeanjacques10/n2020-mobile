@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:n2020mobile/models/suggestions_model.dart';
+import 'package:n2020mobile/models/users_model.dart';
+import 'package:n2020mobile/services/suggestions_service.dart';
 import 'package:n2020mobile/widgets/suggestion_card_item.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,10 +15,15 @@ class _HomePageState extends State<HomePage> {
   var height;
   final GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
 
+  UserModel userModel;
+
   @override
   Widget build(BuildContext context) {
+    final scaffoldKey = GlobalKey<ScaffoldState>();
+    SuggestionService suggestionService = SuggestionService();
     width = MediaQuery.of(context).size.width;
     height = MediaQuery.of(context).size.height;
+    userModel = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
       key: _scafoldKey,
@@ -46,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   top: width * 0.18,
                   left: width * 0.085,
                   child: Text(
-                    "Olá, [name]",
+                    "Olá, ${userModel.name}",
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: width * 0.07,
@@ -81,10 +89,10 @@ class _HomePageState extends State<HomePage> {
                             bottom: width * 0.02,
                           ),
                           child: Text(
-                            "Conversar com",
+                            "Venha converse com a",
                             style: TextStyle(
                                 color: Colors.grey[600],
-                                fontSize: width * 0.05),
+                                fontSize: width * 0.04),
                           ),
                         ),
                         Row(
@@ -110,11 +118,10 @@ class _HomePageState extends State<HomePage> {
                               padding: EdgeInsets.only(right: width * 0.04),
                               child: GestureDetector(
                                 onTap: () {
-                                  /* Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => AddReceita()));
-                                 */
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/bot",
+                                  );
                                 },
                                 child: Container(
                                   width: width * 0.12,
@@ -164,24 +171,63 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 )),
-                SizedBox(height: 15),
+            SizedBox(height: 15),
             Padding(
-              padding: EdgeInsets.only(
-                  left: width * 0.04, right: width * 0.04),
+              padding: EdgeInsets.only(left: width * 0.04, right: width * 0.04),
               child: Expanded(
                 child: SizedBox(
+                  height: height * 0.6,
                   child: MediaQuery.removePadding(
                     context: context,
                     removeTop: true,
-                    child: ListView.builder(
-                      itemCount: 7,
-                      itemBuilder: (ctx, index) {
-                        return SuggestionCardItem(
-                            type: "Podcast",
-                            name: index.toString() + " Jovem Nerd",
-                            height: height,
-                            width: width);
-                      },
+                    child: Scaffold(
+                      key: scaffoldKey,
+                      body: FutureBuilder<List>(
+                        future: suggestionService.findAll(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasError) {
+                            String erroMessage = snapshot.error.toString();
+                            return Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                    'Erro ao carregar a lista de cursos. \n Detalhes: $erroMessage'),
+                              ),
+                            );
+                          } else {
+                            if (snapshot.connectionState ==
+                                ConnectionState.done) {
+                              if (snapshot.data.length > 0) {
+                                List<SuggestionModel> suggestions =
+                                    snapshot.data;
+                                return ListView.builder(
+                                  itemCount: suggestions.length,
+                                  itemBuilder: (ctx, index) {
+                                    return SuggestionCardItem(
+                                        type: suggestions[index].type,
+                                        name: suggestions[index].title,
+                                        image: suggestions[index]
+                                            .imageUrl
+                                            .toString(),
+                                        url: suggestions[index].url,
+                                        height: height,
+                                        width: width);
+                                  },
+                                );
+                                //return buildListView(snapshot.data);
+                              } else {
+                                return Center(
+                                  child: Text("Nenhum curso cadastrado!"),
+                                );
+                              }
+                            } else {
+                              return Center(
+                                child: CircularProgressIndicator(),
+                              );
+                            }
+                          }
+                        },
+                      ),
                     ),
                   ),
                 ),
