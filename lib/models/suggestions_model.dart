@@ -6,8 +6,8 @@ class AlunoModel {
   int type;
   String description;
   String url;
-  String image_url;
-  String id_categories;
+  String imageUrl;
+  String idCategories;
 
   AlunoModel({
     this.id,
@@ -15,8 +15,8 @@ class AlunoModel {
     this.type,
     this.description,
     this.url,
-    this.image_url,
-    this.id_categories,
+    this.imageUrl,
+    this.idCategories,
   });
 
   factory AlunoModel.fromJson(String str) =>
@@ -30,8 +30,8 @@ class AlunoModel {
         type: json["type"],
         description: json["description"],
         url: json["url"],
-        image_url: json["image_url"],
-        id_categories: json["id_categories"],
+        imageUrl: json["imageUrl"],
+        idCategories: json["idCategories"],
       );
 
   Map<String, dynamic> toMap() => {
@@ -40,7 +40,7 @@ class AlunoModel {
         "type": type,
         "description": description,
         "url": url,
-        "image_url": image_url,
-        "id_categories": id_categories,
+        "imageUrl": imageUrl,
+        "idCategories": idCategories,
       };
 }

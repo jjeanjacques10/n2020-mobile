@@ -2,7 +2,7 @@ import 'dart:convert';
 
 class AlunoModel {
   int id;
-  String photo_url;
+  String photoUrl;
   int name;
   String phone;
   String email;
@@ -11,7 +11,7 @@ class AlunoModel {
 
   AlunoModel({
     this.id,
-    this.photo_url,
+    this.photoUrl,
     this.name,
     this.phone,
     this.email,
@@ -25,7 +25,7 @@ class AlunoModel {
 
   factory AlunoModel.fromMap(Map<String, dynamic> json) => AlunoModel(
         id: json["id"],
-        photo_url: json["photo_url"],
+        photoUrl: json["photoUrl"],
         name: json["name"],
         phone: json["phone"],
         email: json["email"],
@@ -34,7 +34,7 @@ class AlunoModel {
 
   Map<String, dynamic> toMap() => {
         "id": id,
-        "photo_url": photo_url,
+        "photoUrl": photoUrl,
         "name": name,
         "phone": phone,
         "email": email,
