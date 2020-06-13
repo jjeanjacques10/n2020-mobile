@@ -170,7 +170,7 @@ class _HomePageState extends State<HomePage> {
                   left: width * 0.04, right: width * 0.04, top: 0),
               child: SizedBox(
                 width: width,
-                height: height * 0.37,
+                height: height,
                 child: ListView.builder(
                   itemCount: 7,
                   itemBuilder: (ctx, index) {
