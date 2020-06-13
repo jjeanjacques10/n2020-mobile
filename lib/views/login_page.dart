@@ -94,17 +94,10 @@ class _LoginPageState extends State<LoginPage> {
                                 color: Colors.blue,
                                 fontWeight: FontWeight.w500)),
                         onPressed: () {
-                          if (formKey.currentState.validate()) {
-                            formKey.currentState.save();
-                          } else {
-                            scaffoldKey.currentState.showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Não foi cadastrar um novo professor',
-                                ),
-                              ),
-                            );
-                          }
+                          Navigator.pushNamed(
+                            context,
+                            "/user-signup",
+                          );
                         },
                       ),
                       SizedBox(
@@ -134,25 +127,26 @@ class _LoginPageState extends State<LoginPage> {
                                     arguments: user,
                                   );
                                 } else {
+                                  scaffoldKey.currentState.showSnackBar(
+                                    SnackBar(
+                                      content: Text(
+                                        'Não foi cadastrar um novo professor',
+                                      ),
+                                    ),
+                                  );
                                   print(user);
                                 }
                               } catch (e) {
+                                scaffoldKey.currentState.showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Não foi cadastrar um novo professor',
+                                    ),
+                                  ),
+                                );
                                 print(e);
                               }
                             });
-
-                            /*
-                            final user = userService.getLogin(
-                                userModel.email, userModel.password);
-                            if (user is UserModel) {
-                              Navigator.pushNamed(
-                                context,
-                                "/",
-                                arguments: user,
-                              );
-                            } else {
-                              print(user);
-                            }*/
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
