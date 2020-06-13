@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:n2020mobile/widgets/bot_card_item.dart';
+import 'package:n2020mobile/widgets/suggestion_card_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -164,17 +165,20 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 )),
-                
             Padding(
               padding: EdgeInsets.only(
                   left: width * 0.04, right: width * 0.04, top: 0),
               child: SizedBox(
                 width: width,
-                height: height * 0.47,
+                height: height * 0.37,
                 child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (BuildContext ctx, int index) {
-                    return null;
+                  itemCount: 7,
+                  itemBuilder: (ctx, index) {
+                    return SuggestionCardItem(
+                        type: "Podcast",
+                        name: index.toString() + " Jovem Nerd",
+                        height: height,
+                        width: width);
                   },
                 ),
               ),
