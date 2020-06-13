@@ -7,7 +7,6 @@ class AlunoModel {
   String phone;
   String email;
   String password;
-  
 
   AlunoModel({
     this.id,

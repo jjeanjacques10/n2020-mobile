@@ -20,41 +20,6 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       key: _scafoldKey,
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
       body: SingleChildScrollView(
         primary: false,
         physics: NeverScrollableScrollPhysics(),
@@ -91,14 +56,14 @@ class _HomePageState extends State<HomePage> {
                 ),
                 Positioned(
                   bottom: 0,
-                  left: width * 0.09,
-                  right: width * 0.09,
+                  left: width * 0.07,
+                  right: width * 0.07,
                   child: Container(
                     height: height * 0.16,
                     width: width * 0.1,
                     decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(18),
+                        borderRadius: BorderRadius.circular(20),
                         boxShadow: [
                           BoxShadow(
                               color: Colors.grey[400],
@@ -185,28 +150,27 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Padding(
-              padding: EdgeInsets.only(left: width * 0.04, right: width * 0.04),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.only(top: 20, left: 22),
-                    child: Text(
-                      "Sugestões:",
-                      style: TextStyle(
-                          color: Colors.grey[600], fontSize: width * 0.04),
+                padding:
+                    EdgeInsets.only(left: width * 0.04, right: width * 0.04),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(top: 20, left: 22),
+                      child: Text(
+                        "Sugestões:",
+                        style: TextStyle(
+                            color: Colors.grey[600], fontSize: width * 0.04),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
+                  ],
+                )),
             Padding(
               padding: EdgeInsets.only(
-                  left: width * 0.02, right: width * 0.02, top: 0),
+                  left: width * 0.04, right: width * 0.04, top: 0),
               child: SizedBox(
+                width: width,
+                height: height * 0.37,
                 child: ListView.builder(
                   itemCount: 7,
                   itemBuilder: (ctx, index) {
