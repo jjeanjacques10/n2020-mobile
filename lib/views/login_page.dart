@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:n2020mobile/views/home_page.dart';
+import 'package:n2020mobile/models/users_model.dart';
+import 'package:n2020mobile/services/user_service.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key, this.title}) : super(key: key);
@@ -12,6 +13,9 @@ class _LoginPageState extends State<LoginPage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+
+  UserService userService = UserService();
+  UserModel userModel = UserModel();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.email = value;
       },
     );
     final passwordField = TextFormField(
@@ -48,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
         return null;
       },
       onSaved: (value) {
-        // professorModel.nome = value;
+        userModel.password = value;
       },
     );
 
@@ -92,15 +96,6 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
-
-                            //professorRepository.create(professorModel);
-
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return HomePage();
-                              }),
-                            );
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
@@ -127,14 +122,37 @@ class _LoginPageState extends State<LoginPage> {
                           if (formKey.currentState.validate()) {
                             formKey.currentState.save();
 
-                            //professorRepository.create(professorModel);
+                            userService
+                                .getLogin(userModel.email.replaceAll("	", ""),
+                                    userModel.password)
+                                .then((user) {
+                              try {
+                                if (user is UserModel) {
+                                  Navigator.pushNamed(
+                                    context,
+                                    "/",
+                                    arguments: user,
+                                  );
+                                } else {
+                                  print(user);
+                                }
+                              } catch (e) {
+                                print(e);
+                              }
+                            });
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) {
-                                return HomePage();
-                              }),
-                            );
+                            /*
+                            final user = userService.getLogin(
+                                userModel.email, userModel.password);
+                            if (user is UserModel) {
+                              Navigator.pushNamed(
+                                context,
+                                "/",
+                                arguments: user,
+                              );
+                            } else {
+                              print(user);
+                            }*/
                           } else {
                             scaffoldKey.currentState.showSnackBar(
                               SnackBar(
