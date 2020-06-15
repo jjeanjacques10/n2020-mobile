@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:n2020mobile/models/users_model.dart';
+import 'package:n2020mobile/services/user_service.dart';
 
 class UserSignUp extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class _UserSignUpState extends State<UserSignUp> {
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
+  UserService userService = UserService();
   UserModel userModel = UserModel();
 
   @override
@@ -108,7 +110,7 @@ class _UserSignUpState extends State<UserSignUp> {
         return null;
       },
       onSaved: (value) {
-         userModel.photoUrl = value;
+        userModel.photoUrl = value;
       },
     );
 
@@ -117,51 +119,58 @@ class _UserSignUpState extends State<UserSignUp> {
         title: Text('Novo Usuário'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-        child: Column(
-          children: [
-            nomeField,
-            SizedBox(
-              height: padding,
-            ),
-            emailField,
-            SizedBox(
-              height: padding,
-            ),
-            photoField,
-            SizedBox(
-              height: padding,
-            ),
-            passwordField,
-            SizedBox(
-              height: padding,
-            ),
-            phoneField,
-            SizedBox(
-              height: padding * 2,
-            ),
-            RaisedButton(
-              padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-              color: Colors.blue,
-              child: Text("Cadastrar",
-                  textAlign: TextAlign.center,
-                  style: style.copyWith(
-                      color: Colors.white, fontWeight: FontWeight.w500)),
-              onPressed: () {
-                if (formKey.currentState.validate()) {
-                  formKey.currentState.save();
-                  //professorRepository.create(professorModel);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return null;
-                    }),
-                  );
-                } else {
+        child: Form(
+          key: formKey,
+          child: Column(
+            children: [
+              nomeField,
+              SizedBox(
+                height: padding,
+              ),
+              emailField,
+              SizedBox(
+                height: padding,
+              ),
+              photoField,
+              SizedBox(
+                height: padding,
+              ),
+              passwordField,
+              SizedBox(
+                height: padding,
+              ),
+              phoneField,
+              SizedBox(
+                height: padding * 2,
+              ),
+              RaisedButton(
+                padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                color: Colors.blue,
+                child: Text("Cadastrar",
+                    textAlign: TextAlign.center,
+                    style: style.copyWith(
+                        color: Colors.white, fontWeight: FontWeight.w500)),
+                onPressed: () {
+                  if (formKey.currentState.validate()) {
+                    formKey.currentState.save();
+                    print(userModel.toJson());
+                    userService.create(userModel);
+                    Navigator.pop(context);
+                    scaffoldKey.currentState.showSnackBar(
+                      SnackBar(
+                        content: Text(
+                          'Cadastrado com sucesso!',
+                        ),
+                      ),
+                    );
+                  }
                   scaffoldKey.currentState.showSnackBar(
                     SnackBar(
                       content: Text(
@@ -169,10 +178,10 @@ class _UserSignUpState extends State<UserSignUp> {
                       ),
                     ),
                   );
-                }
-              },
-            ),
-          ],
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
