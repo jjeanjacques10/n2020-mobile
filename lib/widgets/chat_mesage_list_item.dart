@@ -18,7 +18,7 @@ class ChatMessageListItem extends StatelessWidget {
       contentPadding: EdgeInsets.fromLTRB(64.0, 0.0, 8.0, 0.0),
       trailing: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
       title: Text(chatMessage.name, textAlign: TextAlign.right),
-      subtitle: Text(chatMessage.text, textAlign: TextAlign.right),
+      subtitle: Text(chatMessage.content, textAlign: TextAlign.right),
     );
   }
 
@@ -27,7 +27,7 @@ class ChatMessageListItem extends StatelessWidget {
       contentPadding: EdgeInsets.fromLTRB(8.0, 0.0, 64.0, 0.0),
       leading: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
       title: Text(chatMessage.name, textAlign: TextAlign.left),
-      subtitle: Text(chatMessage.text, textAlign: TextAlign.left),
+      subtitle: Text(chatMessage.content, textAlign: TextAlign.left),
     );
   }
 }
