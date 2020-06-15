@@ -2,11 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:n2020mobile/models/chat_message.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
-class SuggestionService {
-  static final String _endpoint =
-      "http://172.18.4.65:5000/";
+class ChatMessageService {
+  static final String _endpoint = "https://api-n2020.herokuapp.com/";
 
-  static final String _resource = 'message';
+  static final String _resource = 'messages';
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 
@@ -52,19 +51,28 @@ class SuggestionService {
     }
   }
 
-  Future<ChatMessage> getById(int id) async {
+  Future<List<ChatMessage>> getMessagesUserById(int id) async {
+    List<ChatMessage> lista = new List<ChatMessage>();
+
     try {
       String endpoint = _resource + "/" + id.toString();
       Response response = await service.create().get(endpoint);
 
       if (response.statusCode == 200) {
-        var retorno = ChatMessage.fromJson(response.data);
-        return retorno;
+        response.data.forEach(
+          (value) {
+            print(value);
+            lista.add(
+              ChatMessage.fromJson(value),
+            );
+          },
+        );
       }
     } catch (error) {
       print("Service Error: $error ");
       throw error;
     }
+    return lista;
   }
 
   Future<int> update(ChatMessage suggestionModel) async {

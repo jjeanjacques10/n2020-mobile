@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dialogflow/dialogflow_v2.dart';
 import 'package:n2020mobile/models/chat_message.dart';
 import 'package:n2020mobile/models/users_model.dart';
+import 'package:n2020mobile/services/chat_message_service.dart';
 import 'package:n2020mobile/widgets/chat_mesage_list_item.dart';
 
 class BotPage extends StatefulWidget {
@@ -12,7 +13,9 @@ class BotPage extends StatefulWidget {
 class _BotPageState extends State<BotPage> {
   final _messageList = <ChatMessage>[];
   final _controllerText = new TextEditingController();
+  int i = 1;
   UserModel userModel;
+  ChatMessageService chatMessageService = ChatMessageService();
 
   @override
   void dispose() {
@@ -23,6 +26,7 @@ class _BotPageState extends State<BotPage> {
   @override
   Widget build(BuildContext context) {
     userModel = ModalRoute.of(context).settings.arguments;
+
     return Scaffold(
       appBar: new AppBar(
         title: Text('Goodbot'),
@@ -39,6 +43,10 @@ class _BotPageState extends State<BotPage> {
 
   // Cria a lista de mensagens (de baixo para cima)
   Widget _buildList() {
+    if (i == 1) {
+      _populate(userModel);
+      i++;
+    }
     return Flexible(
       child: ListView.builder(
         padding: EdgeInsets.all(8.0),
@@ -51,11 +59,11 @@ class _BotPageState extends State<BotPage> {
   }
 
   // Envia uma mensagem com o padrão a direita
-  void _sendMessage({String text, UserModel userModel}) {
+  void _sendMessage({String content, UserModel userModel}) {
     _controllerText.clear();
     _addMessage(
       name: userModel.name,
-      text: text,
+      content: content,
       type: ChatMessageType.sent,
       userId: userModel.id,
     );
@@ -64,9 +72,9 @@ class _BotPageState extends State<BotPage> {
 
   // Adiciona uma mensagem na lista de mensagens
   void _addMessage(
-      {String name, String text, ChatMessageType type, int userId}) {
+      {String name, String content, ChatMessageType type, int userId}) {
     var message = ChatMessage(
-      text: text,
+      content: content,
       name: name,
       type: type,
       userId: userModel.id,
@@ -77,7 +85,7 @@ class _BotPageState extends State<BotPage> {
 
     if (type == ChatMessageType.sent) {
       // Envia a mensagem para o chatbot e aguarda sua resposta
-      _dialogFlowRequest(query: message.text);
+      _dialogFlowRequest(query: message.content);
       //Cadastrar no banco aqui
     }
   }
@@ -102,7 +110,7 @@ class _BotPageState extends State<BotPage> {
           icon: new Icon(Icons.send, color: Theme.of(context).accentColor),
           onPressed: () {
             if (_controllerText.text.isNotEmpty) {
-              _sendMessage(text: _controllerText.text, userModel: userModel);
+              _sendMessage(content: _controllerText.text, userModel: userModel);
             }
           }),
     );
@@ -125,7 +133,9 @@ class _BotPageState extends State<BotPage> {
   Future _dialogFlowRequest({String query}) async {
     // Adiciona uma mensagem temporária na lista
     _addMessage(
-        name: 'Eliza', text: 'Escrevendo...', type: ChatMessageType.received);
+        name: 'Eliza',
+        content: 'Escrevendo...',
+        type: ChatMessageType.received);
 
     // Faz a autenticação com o serviço, envia a mensagem e recebe uma resposta da Intent
     AuthGoogle authGoogle =
@@ -142,7 +152,19 @@ class _BotPageState extends State<BotPage> {
     // adiciona a mensagem com a resposta do DialogFlow
     _addMessage(
         name: 'Eliza',
-        text: response.getMessage() ?? '',
+        content: response.getMessage() ?? '',
         type: ChatMessageType.received);
+  }
+
+  void _populate(UserModel userModel) {
+    chatMessageService.getMessagesUserById(userModel.id).then((messages) {
+      for (var message in messages) {
+        if (messages != null) {
+          setState(() {
+            _messageList.insert(0, message);
+          });
+        }
+      }
+    });
   }
 }
