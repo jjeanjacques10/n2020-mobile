@@ -121,6 +121,7 @@ class _HomePageState extends State<HomePage> {
                                   Navigator.pushNamed(
                                     context,
                                     "/bot",
+                                    arguments: userModel,
                                   );
                                 },
                                 child: Container(

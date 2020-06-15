@@ -1,9 +1,11 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class UserService {
-  static final String _endpoint = "https://api-n2020.herokuapp.com/";
+  static final String _endpoint = "http://172.18.4.65:5000/";
 
   static final String _resource = "user";
 
@@ -37,6 +39,15 @@ class UserService {
       Response response = await service.create().post(
             _resource,
             data: userModel.toJson(),
+            options: Options(
+                contentType: 'application/json',
+                method: 'post',
+                responseType: ResponseType.json,
+                receiveTimeout: 100000,
+                followRedirects: false,
+                validateStatus: (status) {
+                  return status < 500;
+                }),
           );
 
       if (response.statusCode == 201) {
@@ -70,7 +81,9 @@ class UserService {
     try {
       String endpoint =
           _resource + "/login?password=${password}&email=${email}";
-      Response response = await service.create().get(endpoint);
+      Response response = await service.create().get(
+            endpoint,
+          );
 
       if (response.statusCode == 200) {
         print(response.data);

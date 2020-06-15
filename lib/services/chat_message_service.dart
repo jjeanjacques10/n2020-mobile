@@ -1,17 +1,17 @@
 import 'package:dio/dio.dart';
-import 'package:n2020mobile/models/suggestions_model.dart';
+import 'package:n2020mobile/models/chat_message.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class SuggestionService {
   static final String _endpoint =
       "http://172.18.4.65:5000/";
 
-  static final String _resource = 'suggestions';
+  static final String _resource = 'message';
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 
-  Future<List<SuggestionModel>> findAll() async {
-    List<SuggestionModel> lista = new List<SuggestionModel>();
+  Future<List<ChatMessage>> findAll() async {
+    List<ChatMessage> lista = new List<ChatMessage>();
 
     try {
       Response response = await service.create().get(_resource);
@@ -20,7 +20,7 @@ class SuggestionService {
           (value) {
             print(value);
             lista.add(
-              SuggestionModel.fromJson(value),
+              ChatMessage.fromJson(value),
             );
           },
         );
@@ -33,7 +33,7 @@ class SuggestionService {
     return lista;
   }
 
-  Future<int> create(SuggestionModel suggestionModel) async {
+  Future<int> create(ChatMessage suggestionModel) async {
     try {
       Response response = await service.create().post(
             _resource,
@@ -52,13 +52,13 @@ class SuggestionService {
     }
   }
 
-  Future<SuggestionModel> getById(int id) async {
+  Future<ChatMessage> getById(int id) async {
     try {
       String endpoint = _resource + "/" + id.toString();
       Response response = await service.create().get(endpoint);
 
       if (response.statusCode == 200) {
-        var retorno = SuggestionModel.fromJson(response.data);
+        var retorno = ChatMessage.fromJson(response.data);
         return retorno;
       }
     } catch (error) {
@@ -67,9 +67,9 @@ class SuggestionService {
     }
   }
 
-  Future<int> update(SuggestionModel suggestionModel) async {
+  Future<int> update(ChatMessage suggestionModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.id.toString();
+      String endpoint = _resource + "/" + suggestionModel.name.toString();
 
       Response response = await service.create().put(
             endpoint,
@@ -86,9 +86,9 @@ class SuggestionService {
     }
   }
 
-  Future<void> delete(SuggestionModel suggestionModel) async {
+  Future<void> delete(ChatMessage suggestionModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.id.toString();
+      String endpoint = _resource + "/" + suggestionModel.name.toString();
 
       Response response = await service.create().delete(
             endpoint,
