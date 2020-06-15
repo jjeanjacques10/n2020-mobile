@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dio/dio.dart';
 import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/service_config.dart';
@@ -97,6 +95,13 @@ class UserService {
     } catch (error) {
       print("Service Error: $error ");
       throw error;
+    } on DioError catch (e) {
+      if (e.type == DioErrorType.CONNECT_TIMEOUT) {
+        getLogin(email, password);
+      }
+      if (e.type == DioErrorType.RECEIVE_TIMEOUT) {
+        getLogin(email, password);
+      }
     }
   }
 
