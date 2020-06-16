@@ -3,7 +3,7 @@ import 'package:n2020mobile/models/chat_message.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class ChatMessageService {
-  static final String _endpoint = "https://api-n2020.herokuapp.com/";
+  static final String _endpoint = "https://api-2020.herokuapp.com/";
 
   static final String _resource = 'messages';
 
@@ -32,11 +32,11 @@ class ChatMessageService {
     return lista;
   }
 
-  Future<int> create(ChatMessage suggestionModel) async {
+  Future<int> create(ChatMessage chatMessageModel) async {
     try {
       Response response = await service.create().post(
             _resource,
-            data: suggestionModel.toJson(),
+            data: chatMessageModel.toJson(),
           );
 
       if (response.statusCode == 201) {
@@ -75,13 +75,13 @@ class ChatMessageService {
     return lista;
   }
 
-  Future<int> update(ChatMessage suggestionModel) async {
+  Future<int> update(ChatMessage chatMessageModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.name.toString();
+      String endpoint = _resource + "/" + chatMessageModel.name.toString();
 
       Response response = await service.create().put(
             endpoint,
-            data: suggestionModel.toJson(),
+            data: chatMessageModel.toJson(),
           );
 
       var retorno = (response.data["id"] is String)
@@ -94,9 +94,9 @@ class ChatMessageService {
     }
   }
 
-  Future<void> delete(ChatMessage suggestionModel) async {
+  Future<void> delete(ChatMessage chatMessageModel) async {
     try {
-      String endpoint = _resource + "/" + suggestionModel.name.toString();
+      String endpoint = _resource + "/" + chatMessageModel.name.toString();
 
       Response response = await service.create().delete(
             endpoint,

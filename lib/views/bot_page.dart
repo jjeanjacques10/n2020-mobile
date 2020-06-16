@@ -74,8 +74,8 @@ class _BotPageState extends State<BotPage> {
   void _addMessage(
       {String name, String content, ChatMessageType type, int userId}) {
     var message = ChatMessage(
-      content: content,
       name: name,
+      content: content,
       type: type,
       userId: userModel.id,
     );
@@ -86,8 +86,8 @@ class _BotPageState extends State<BotPage> {
     if (type == ChatMessageType.sent) {
       // Envia a mensagem para o chatbot e aguarda sua resposta
       _dialogFlowRequest(query: message.content);
-      //Cadastrar no banco aqui
     }
+    chatMessageService.create(message);
   }
 
   // Campo para escrever a mensagem

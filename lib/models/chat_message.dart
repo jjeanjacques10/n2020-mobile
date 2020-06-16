@@ -33,7 +33,7 @@ class ChatMessage {
     data['id'] = this.id;
     data['name'] = this.name;
     data['content'] = this.content;
-    data['type'] = this.type;
+    data['type'] = this.type == ChatMessageType.sent ? "sent": "received";
     data['userId'] = this.userId;
     return data;
   }
