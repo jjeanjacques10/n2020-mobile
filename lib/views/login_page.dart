@@ -134,7 +134,6 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   );
-                                  print(user);
                                 }
                               } catch (e) {
                                 scaffoldKey.currentState.showSnackBar(

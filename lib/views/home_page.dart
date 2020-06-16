@@ -205,14 +205,10 @@ class _HomePageState extends State<HomePage> {
                                   itemCount: suggestions.length,
                                   itemBuilder: (ctx, index) {
                                     return SuggestionCardItem(
-                                        type: suggestions[index].type,
-                                        name: suggestions[index].title,
-                                        image: suggestions[index]
-                                            .imageUrl
-                                            .toString(),
-                                        url: suggestions[index].url,
-                                        height: height,
-                                        width: width);
+                                      height: height,
+                                      width: width,
+                                      suggestionModel: suggestions[index],
+                                    );
                                   },
                                 );
                                 //return buildListView(snapshot.data);

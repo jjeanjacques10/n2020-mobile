@@ -4,7 +4,7 @@ import 'package:n2020mobile/services/service_config.dart';
 
 class SuggestionService {
   static final String _endpoint =
-      "https://api-2020.herokuapp.com/";
+      "http://172.18.4.65:5000/";
 
   static final String _resource = 'suggestions';
 

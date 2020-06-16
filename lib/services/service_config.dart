@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 class ServiceConfig {
 
   String _url = "";
-  int timeout = 7500;
+  int timeout = 8500;
 
   ServiceConfig(this._url, {this.timeout = 7500} );
 
