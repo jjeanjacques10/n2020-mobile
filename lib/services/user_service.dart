@@ -3,7 +3,7 @@ import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class UserService {
-  static final String _endpoint = "https://api-2020.herokuapp.com/";
+  static final String _endpoint = "https://api-n2020.herokuapp.com/";
 
   static final String _resource = "user";
 
