@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:n2020mobile/models/chat_message.dart';
+import 'package:n2020mobile/models/users_model.dart';
 
 class ChatMessageListItem extends StatelessWidget {
   final ChatMessage chatMessage;
+  final UserModel userModel;
 
-  ChatMessageListItem({this.chatMessage});
+  ChatMessageListItem({this.chatMessage, this.userModel});
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +18,21 @@ class ChatMessageListItem extends StatelessWidget {
   Widget _showSentMessage({EdgeInsets padding, TextAlign textAlign}) {
     return ListTile(
       contentPadding: EdgeInsets.fromLTRB(64.0, 0.0, 8.0, 0.0),
-      trailing: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
-      title: Text(chatMessage.name, textAlign: TextAlign.right),
-      subtitle: Text(chatMessage.content, textAlign: TextAlign.right),
+      trailing: CircleAvatar(
+        backgroundImage: NetworkImage(userModel.photoUrl),
+      ),
+      title: Text(chatMessage.content, textAlign: TextAlign.right),
     );
   }
 
   Widget _showReceivedMessage() {
     return ListTile(
       contentPadding: EdgeInsets.fromLTRB(8.0, 0.0, 64.0, 0.0),
-      leading: CircleAvatar(child: Text(chatMessage.name.toUpperCase()[0])),
-      title: Text(chatMessage.name, textAlign: TextAlign.left),
-      subtitle: Text(chatMessage.content, textAlign: TextAlign.left),
+      leading: CircleAvatar(
+          child: Text(
+        chatMessage.name.toUpperCase()[0],
+      )),
+      title: Text(chatMessage.content, textAlign: TextAlign.left),
     );
   }
 }

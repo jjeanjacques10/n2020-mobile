@@ -29,7 +29,7 @@ class _BotPageState extends State<BotPage> {
 
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Goodbot'),
+        title: Text('Elisa'),
       ),
       body: Column(
         children: <Widget>[
@@ -52,7 +52,7 @@ class _BotPageState extends State<BotPage> {
         padding: EdgeInsets.all(8.0),
         reverse: true,
         itemBuilder: (_, int index) =>
-            ChatMessageListItem(chatMessage: _messageList[index]),
+            ChatMessageListItem(chatMessage: _messageList[index], userModel: userModel),
         itemCount: _messageList.length,
       ),
     );
@@ -133,7 +133,7 @@ class _BotPageState extends State<BotPage> {
   Future _dialogFlowRequest({String query}) async {
     // Adiciona uma mensagem temporária na lista
     _addMessage(
-        name: 'Eliza',
+        name: 'Elisa',
         content: 'Escrevendo...',
         type: ChatMessageType.received);
 
@@ -151,7 +151,7 @@ class _BotPageState extends State<BotPage> {
 
     // adiciona a mensagem com a resposta do DialogFlow
     _addMessage(
-        name: 'Eliza',
+        name: 'Elisa',
         content: response.getMessage() ?? '',
         type: ChatMessageType.received);
   }
