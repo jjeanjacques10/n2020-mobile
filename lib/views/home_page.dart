@@ -50,13 +50,17 @@ class _HomePageState extends State<HomePage> {
                 leading: Icon(Icons.account_circle),
                 title: Text("Perfil"),
                 onTap: () {
-                  Navigator.pop(context);
+                  Navigator.pushNamed(
+                    context,
+                    '/profile',
+                    arguments: userModel,
+                  );
                 }),
             ListTile(
                 leading: Icon(Icons.warning),
                 title: Text("Denunciar abuso"),
                 onTap: () {
-                  debugPrint('toquei no drawer');
+                  debugPrint('Ativei denúncia');
                 }),
             ListTile(
                 leading: Icon(Icons.exit_to_app),
