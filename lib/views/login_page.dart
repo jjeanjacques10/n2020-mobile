@@ -64,69 +64,79 @@ class _LoginPageState extends State<LoginPage> {
             padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Form(
               key: formKey,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: 160.0,
-                    child: Image.asset(
-                      "assets/images/logo.jpeg",
-                      fit: BoxFit.contain,
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 160.0,
+                      child: Image.asset(
+                        "assets/images/logo.jpeg",
+                        fit: BoxFit.contain,
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 25.0),
-                  emailField,
-                  SizedBox(height: 25.0),
-                  passwordField,
-                  SizedBox(
-                    height: 25.0,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      RaisedButton(
-                        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                        color: Colors.white,
-                        child: Text("Cadastrar",
-                            textAlign: TextAlign.center,
-                            style: style.copyWith(
-                                color: Colors.blue,
-                                fontWeight: FontWeight.w500)),
-                        onPressed: () {
-                          Navigator.pushNamed(
-                            context,
-                            "/user-signup",
-                          );
-                        },
-                      ),
-                      SizedBox(
-                        width: 15,
-                      ),
-                      RaisedButton(
-                        padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                        color: Colors.blue,
-                        child: Text("Entrar",
-                            textAlign: TextAlign.center,
-                            style: style.copyWith(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w500)),
-                        onPressed: () {
-                          if (formKey.currentState.validate()) {
-                            formKey.currentState.save();
+                    SizedBox(height: 25.0),
+                    emailField,
+                    SizedBox(height: 25.0),
+                    passwordField,
+                    SizedBox(
+                      height: 25.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        RaisedButton(
+                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          color: Colors.white,
+                          child: Text("Cadastrar",
+                              textAlign: TextAlign.center,
+                              style: style.copyWith(
+                                  color: Colors.blue,
+                                  fontWeight: FontWeight.w500)),
+                          onPressed: () {
+                            Navigator.pushNamed(
+                              context,
+                              "/user-signup",
+                            );
+                          },
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        RaisedButton(
+                          padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                          color: Colors.blue,
+                          child: Text("Entrar",
+                              textAlign: TextAlign.center,
+                              style: style.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500)),
+                          onPressed: () {
+                            if (formKey.currentState.validate()) {
+                              formKey.currentState.save();
 
-                            userService
-                                .getLogin(userModel.email.replaceAll("	", ""),
-                                    userModel.password)
-                                .then((user) {
-                              try {
-                                if (user is UserModel) {
-                                  Navigator.pushNamed(
-                                    context,
-                                    "/",
-                                    arguments: user,
-                                  );
-                                } else {
+                              userService
+                                  .getLogin(userModel.email.replaceAll("	", ""),
+                                      userModel.password)
+                                  .then((user) {
+                                try {
+                                  if (user is UserModel) {
+                                    Navigator.pushNamed(
+                                      context,
+                                      "/",
+                                      arguments: user,
+                                    );
+                                  } else {
+                                    scaffoldKey.currentState.showSnackBar(
+                                      SnackBar(
+                                        content: Text(
+                                          'Não foi cadastrar um novo professor',
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                } catch (e) {
                                   scaffoldKey.currentState.showSnackBar(
                                     SnackBar(
                                       content: Text(
@@ -134,43 +144,35 @@ class _LoginPageState extends State<LoginPage> {
                                       ),
                                     ),
                                   );
+                                  print(e);
                                 }
-                              } catch (e) {
-                                scaffoldKey.currentState.showSnackBar(
-                                  SnackBar(
-                                    content: Text(
-                                      'Não foi cadastrar um novo professor',
-                                    ),
+                              });
+                            } else {
+                              scaffoldKey.currentState.showSnackBar(
+                                SnackBar(
+                                  content: Text(
+                                    'Não foi cadastrar um novo professor',
                                   ),
-                                );
-                                print(e);
-                              }
-                            });
-                          } else {
-                            scaffoldKey.currentState.showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  'Não foi cadastrar um novo professor',
                                 ),
-                              ),
-                            );
-                          }
-                        },
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  FlatButton(
-                    child: Text(
-                      'Esqueci minha senha',
-                      style: TextStyle(
-                          color: Colors.grey, fontWeight: FontWeight.w400),
+                              );
+                            }
+                          },
+                        ),
+                      ],
                     ),
-                    onPressed: () {},
-                  )
-                ],
+                    SizedBox(
+                      width: 15,
+                    ),
+                    FlatButton(
+                      child: Text(
+                        'Esqueci minha senha',
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.w400),
+                      ),
+                      onPressed: () {},
+                    )
+                  ],
+                ),
               ),
             ),
           ),

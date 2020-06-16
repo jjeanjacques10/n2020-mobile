@@ -125,62 +125,64 @@ class _UserSignUpState extends State<UserSignUp> {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+        margin: EdgeInsets.only(top: 50, left: 20, right: 20),
         child: Form(
           key: formKey,
-          child: Column(
-            children: [
-              nomeField,
-              SizedBox(
-                height: padding,
-              ),
-              emailField,
-              SizedBox(
-                height: padding,
-              ),
-              photoField,
-              SizedBox(
-                height: padding,
-              ),
-              passwordField,
-              SizedBox(
-                height: padding,
-              ),
-              phoneField,
-              SizedBox(
-                height: padding * 2,
-              ),
-              RaisedButton(
-                padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                color: Colors.blue,
-                child: Text("Cadastrar",
-                    textAlign: TextAlign.center,
-                    style: style.copyWith(
-                        color: Colors.white, fontWeight: FontWeight.w500)),
-                onPressed: () {
-                  if (formKey.currentState.validate()) {
-                    formKey.currentState.save();
-                    print(userModel.toJson());
-                    userService.create(userModel);
-                    Navigator.pop(context);
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                nomeField,
+                SizedBox(
+                  height: padding,
+                ),
+                emailField,
+                SizedBox(
+                  height: padding,
+                ),
+                photoField,
+                SizedBox(
+                  height: padding,
+                ),
+                passwordField,
+                SizedBox(
+                  height: padding,
+                ),
+                phoneField,
+                SizedBox(
+                  height: padding * 2,
+                ),
+                RaisedButton(
+                  padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+                  color: Colors.blue,
+                  child: Text("Cadastrar",
+                      textAlign: TextAlign.center,
+                      style: style.copyWith(
+                          color: Colors.white, fontWeight: FontWeight.w500)),
+                  onPressed: () {
+                    if (formKey.currentState.validate()) {
+                      formKey.currentState.save();
+                      print(userModel.toJson());
+                      userService.create(userModel);
+                      Navigator.pop(context);
+                      scaffoldKey.currentState.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            'Cadastrado com sucesso!',
+                          ),
+                        ),
+                      );
+                    }
                     scaffoldKey.currentState.showSnackBar(
                       SnackBar(
                         content: Text(
-                          'Cadastrado com sucesso!',
+                          'Não foi cadastrar um novo professor',
                         ),
                       ),
                     );
-                  }
-                  scaffoldKey.currentState.showSnackBar(
-                    SnackBar(
-                      content: Text(
-                        'Não foi cadastrar um novo professor',
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ],
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
