@@ -19,7 +19,7 @@ class ChatMessage {
 
   ChatMessage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['type'] == "sent" ? json['name'] : 'Eliza';
+    name = json['type'] == "sent" ? json['name'] : 'Elisa';
     time = json['time'];
     content = json['content'];
     type = json['type'] == "sent"
