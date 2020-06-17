@@ -17,7 +17,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    final padding = 12.0;
+    final padding = 10.0;
     userModel = ModalRoute.of(context).settings.arguments;
 
     final nomeField = TextFormField(
@@ -26,6 +26,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Nome',
           hintText: "Nome",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -46,6 +47,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Email',
           hintText: "Email",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -65,7 +67,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Senha",
+          labelText: 'Senha',
+          hintText: "******",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
@@ -86,6 +89,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Telefone',
           hintText: "Telefone",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -106,7 +110,8 @@ class _UserProfilePageState extends State<UserProfilePage> {
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "URL da foto",
+          labelText: 'Foto de perfil',
+          hintText: "Figite a URL da foto",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
@@ -160,7 +165,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                 RaisedButton(
                   padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   color: Colors.blue,
-                  child: Text("Cadastrar",
+                  child: Text("Atualizar",
                       textAlign: TextAlign.center,
                       style: style.copyWith(
                           color: Colors.white, fontWeight: FontWeight.w500)),
@@ -173,7 +178,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       scaffoldKey.currentState.showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Cadastrado com sucesso!',
+                            'Atualizado com sucesso!',
                           ),
                         ),
                       );
@@ -181,7 +186,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
                     scaffoldKey.currentState.showSnackBar(
                       SnackBar(
                         content: Text(
-                          'Não foi cadastrar um novo professor',
+                          'Não foi possível atualizar seu perfil',
                         ),
                       ),
                     );

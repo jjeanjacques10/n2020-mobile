@@ -51,8 +51,8 @@ class _BotPageState extends State<BotPage> {
       child: ListView.builder(
         padding: EdgeInsets.all(8.0),
         reverse: true,
-        itemBuilder: (_, int index) =>
-            ChatMessageListItem(chatMessage: _messageList[index], userModel: userModel),
+        itemBuilder: (_, int index) => ChatMessageListItem(
+            chatMessage: _messageList[index], userModel: userModel),
         itemCount: _messageList.length,
       ),
     );
@@ -67,7 +67,6 @@ class _BotPageState extends State<BotPage> {
       type: ChatMessageType.sent,
       userId: userModel.id,
     );
-    //Cadastrar no banco aqui
   }
 
   // Adiciona uma mensagem na lista de mensagens
@@ -87,7 +86,9 @@ class _BotPageState extends State<BotPage> {
       // Envia a mensagem para o chatbot e aguarda sua resposta
       _dialogFlowRequest(query: message.content);
     }
-    chatMessageService.create(message);
+    if (message.content != "Escrevendo...") {
+      chatMessageService.create(message);
+    }
   }
 
   // Campo para escrever a mensagem

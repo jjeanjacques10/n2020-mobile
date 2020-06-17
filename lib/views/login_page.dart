@@ -57,6 +57,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
         child: Container(
           color: Colors.white,
@@ -131,7 +132,7 @@ class _LoginPageState extends State<LoginPage> {
                                     scaffoldKey.currentState.showSnackBar(
                                       SnackBar(
                                         content: Text(
-                                          'Não foi cadastrar um novo professor',
+                                          'Não foi realizar o login',
                                         ),
                                       ),
                                     );
@@ -140,7 +141,7 @@ class _LoginPageState extends State<LoginPage> {
                                   scaffoldKey.currentState.showSnackBar(
                                     SnackBar(
                                       content: Text(
-                                        'Não foi cadastrar um novo professor',
+                                        'Não foi realizar o login',
                                       ),
                                     ),
                                   );
@@ -151,7 +152,7 @@ class _LoginPageState extends State<LoginPage> {
                               scaffoldKey.currentState.showSnackBar(
                                 SnackBar(
                                   content: Text(
-                                    'Não foi cadastrar um novo professor',
+                                    'Não foi realizar o login',
                                   ),
                                 ),
                               );
