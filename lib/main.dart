@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:n2020mobile/views/bot_page.dart';
 import 'package:n2020mobile/views/home_page.dart';
 import 'package:n2020mobile/views/login_page.dart';
+import 'package:n2020mobile/views/suggestion_page.dart';
+import 'package:n2020mobile/views/user/user_profile_page.dart';
 import 'package:n2020mobile/views/user/user_sign_up_page.dart';
 
 void main() {
@@ -24,7 +26,9 @@ class MyApp extends StatelessWidget {
         '/': (context) => HomePage(),
         '/bot': (context) => BotPage(),
         '/login': (context) => LoginPage(),
-        '/user-signup': (context) => UserSignUp()
+        '/user-signup': (context) => UserSignUp(),
+        '/suggestionsweb': (context) => SuggestionPage(),
+        '/profile': (context) => UserProfilePage(),
       },
     );
   }

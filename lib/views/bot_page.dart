@@ -29,7 +29,8 @@ class _BotPageState extends State<BotPage> {
 
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Goodbot'),
+        title: Text('Elisa '),
+        backgroundColor: Colors.lightBlue[700],
       ),
       body: Column(
         children: <Widget>[
@@ -51,8 +52,8 @@ class _BotPageState extends State<BotPage> {
       child: ListView.builder(
         padding: EdgeInsets.all(8.0),
         reverse: true,
-        itemBuilder: (_, int index) =>
-            ChatMessageListItem(chatMessage: _messageList[index]),
+        itemBuilder: (_, int index) => ChatMessageListItem(
+            chatMessage: _messageList[index], userModel: userModel),
         itemCount: _messageList.length,
       ),
     );
@@ -67,15 +68,14 @@ class _BotPageState extends State<BotPage> {
       type: ChatMessageType.sent,
       userId: userModel.id,
     );
-    //Cadastrar no banco aqui
   }
 
   // Adiciona uma mensagem na lista de mensagens
   void _addMessage(
       {String name, String content, ChatMessageType type, int userId}) {
     var message = ChatMessage(
-      content: content,
       name: name,
+      content: content,
       type: type,
       userId: userModel.id,
     );
@@ -86,7 +86,9 @@ class _BotPageState extends State<BotPage> {
     if (type == ChatMessageType.sent) {
       // Envia a mensagem para o chatbot e aguarda sua resposta
       _dialogFlowRequest(query: message.content);
-      //Cadastrar no banco aqui
+    }
+    if (message.content != "Escrevendo...") {
+      chatMessageService.create(message);
     }
   }
 
@@ -133,7 +135,7 @@ class _BotPageState extends State<BotPage> {
   Future _dialogFlowRequest({String query}) async {
     // Adiciona uma mensagem temporária na lista
     _addMessage(
-        name: 'Eliza',
+        name: 'Elisa',
         content: 'Escrevendo...',
         type: ChatMessageType.received);
 
@@ -151,7 +153,7 @@ class _BotPageState extends State<BotPage> {
 
     // adiciona a mensagem com a resposta do DialogFlow
     _addMessage(
-        name: 'Eliza',
+        name: 'Elisa',
         content: response.getMessage() ?? '',
         type: ChatMessageType.received);
   }

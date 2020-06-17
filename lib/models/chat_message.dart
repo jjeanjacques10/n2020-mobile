@@ -19,7 +19,7 @@ class ChatMessage {
 
   ChatMessage.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    name = json['type'] == "sent" ? json['name'] : 'Eliza';
+    name = json['type'] == "sent" ? json['name'] : 'Elisa';
     time = json['time'];
     content = json['content'];
     type = json['type'] == "sent"
@@ -33,7 +33,7 @@ class ChatMessage {
     data['id'] = this.id;
     data['name'] = this.name;
     data['content'] = this.content;
-    data['type'] = this.type;
+    data['type'] = this.type == ChatMessageType.sent ? "sent": "received";
     data['userId'] = this.userId;
     return data;
   }

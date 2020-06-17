@@ -2,28 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/user_service.dart';
 
-class UserSignUp extends StatefulWidget {
+class UserProfilePage extends StatefulWidget {
   @override
-  _UserSignUpState createState() => _UserSignUpState();
+  _UserProfilePageState createState() => _UserProfilePageState();
 }
 
-class _UserSignUpState extends State<UserSignUp> {
+class _UserProfilePageState extends State<UserProfilePage> {
   TextStyle style = TextStyle(fontFamily: 'Montserrat', fontSize: 16.0);
   final GlobalKey<FormState> formKey = new GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   UserService userService = UserService();
-  UserModel userModel = UserModel();
+  UserModel userModel;
 
   @override
   Widget build(BuildContext context) {
-    final padding = 12.0;
+    final padding = 10.0;
+    userModel = ModalRoute.of(context).settings.arguments;
 
     final nomeField = TextFormField(
+      initialValue: userModel.name,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Nome',
           hintText: "Nome",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -39,10 +42,12 @@ class _UserSignUpState extends State<UserSignUp> {
     );
 
     final emailField = TextFormField(
+      initialValue: userModel.email,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Email',
           hintText: "Email",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -57,11 +62,13 @@ class _UserSignUpState extends State<UserSignUp> {
       },
     );
     final passwordField = TextFormField(
+      initialValue: userModel.password,
       obscureText: true,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "Senha",
+          labelText: 'Senha',
+          hintText: "******",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
@@ -76,11 +83,13 @@ class _UserSignUpState extends State<UserSignUp> {
     );
 
     final phoneField = TextFormField(
+      initialValue: userModel.phone,
       obscureText: false,
       style: style,
       keyboardType: TextInputType.number,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
+          labelText: 'Telefone',
           hintText: "Telefone",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
@@ -96,11 +105,13 @@ class _UserSignUpState extends State<UserSignUp> {
     );
 
     final photoField = TextFormField(
+      initialValue: userModel.photoUrl,
       obscureText: false,
       style: style,
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-          hintText: "URL da foto",
+          labelText: 'Foto de perfil',
+          hintText: "Figite a URL da foto",
           border:
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
@@ -116,7 +127,7 @@ class _UserSignUpState extends State<UserSignUp> {
 
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Novo Usuário'),
+        title: Text('Perfil - ${userModel.name}'),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
@@ -154,7 +165,7 @@ class _UserSignUpState extends State<UserSignUp> {
                 RaisedButton(
                   padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
                   color: Colors.blue,
-                  child: Text("Cadastrar",
+                  child: Text("Atualizar",
                       textAlign: TextAlign.center,
                       style: style.copyWith(
                           color: Colors.white, fontWeight: FontWeight.w500)),
@@ -162,12 +173,12 @@ class _UserSignUpState extends State<UserSignUp> {
                     if (formKey.currentState.validate()) {
                       formKey.currentState.save();
                       print(userModel.toJson());
-                      userService.create(userModel);
+                      userService.update(userModel);
                       Navigator.pop(context);
                       scaffoldKey.currentState.showSnackBar(
                         SnackBar(
                           content: Text(
-                            'Cadastrado com sucesso!',
+                            'Atualizado com sucesso!',
                           ),
                         ),
                       );
@@ -175,7 +186,7 @@ class _UserSignUpState extends State<UserSignUp> {
                     scaffoldKey.currentState.showSnackBar(
                       SnackBar(
                         content: Text(
-                          'Não foi cadastrar um novo professor',
+                          'Não foi possível atualizar seu perfil',
                         ),
                       ),
                     );

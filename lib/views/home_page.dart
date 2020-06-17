@@ -13,7 +13,7 @@ class _HomePageState extends State<HomePage> {
   var total;
   var width;
   var height;
-  final GlobalKey<ScaffoldState> _scafoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   UserModel userModel;
 
@@ -26,7 +26,51 @@ class _HomePageState extends State<HomePage> {
     userModel = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
-      key: _scafoldKey,
+      key: _scaffoldKey,
+      endDrawerEnableOpenDragGesture: true,
+      endDrawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            UserAccountsDrawerHeader(
+              accountName: Text(
+                userModel.name,
+                style: TextStyle(fontSize: 22),
+              ),
+              accountEmail: Text(
+                userModel.email,
+                style: TextStyle(fontSize: 15),
+              ),
+              currentAccountPicture: CircleAvatar(
+                radius: 30.0,
+                backgroundImage: NetworkImage(userModel.photoUrl),
+                backgroundColor: Colors.transparent,
+              ),
+            ),
+            ListTile(
+                leading: Icon(Icons.account_circle),
+                title: Text("Perfil"),
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/profile',
+                    arguments: userModel,
+                  );
+                }),
+            ListTile(
+                leading: Icon(Icons.warning),
+                title: Text("Denunciar abuso"),
+                onTap: () {
+                  debugPrint('Ativei denúncia');
+                }),
+            ListTile(
+                leading: Icon(Icons.exit_to_app),
+                title: Text("Sair"),
+                onTap: () {
+                  Navigator.pushNamed(context, '/login');
+                })
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         primary: false,
         physics: NeverScrollableScrollPhysics(),
@@ -51,7 +95,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                 ),
                 Positioned(
-                  top: width * 0.18,
+                  top: width * 0.15,
                   left: width * 0.085,
                   child: Text(
                     "Olá, ${userModel.name}",
@@ -59,6 +103,18 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.white,
                         fontSize: width * 0.07,
                         fontWeight: FontWeight.w400),
+                  ),
+                ),
+                Positioned(
+                  top: width * 0.13,
+                  left: width * 0.78,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.menu,
+                      size: 35,
+                      color: Colors.white,
+                    ),
+                    onPressed: () => _scaffoldKey.currentState.openEndDrawer(),
                   ),
                 ),
                 Positioned(
@@ -205,14 +261,10 @@ class _HomePageState extends State<HomePage> {
                                   itemCount: suggestions.length,
                                   itemBuilder: (ctx, index) {
                                     return SuggestionCardItem(
-                                        type: suggestions[index].type,
-                                        name: suggestions[index].title,
-                                        image: suggestions[index]
-                                            .imageUrl
-                                            .toString(),
-                                        url: suggestions[index].url,
-                                        height: height,
-                                        width: width);
+                                      height: height,
+                                      width: width,
+                                      suggestionModel: suggestions[index],
+                                    );
                                   },
                                 );
                                 //return buildListView(snapshot.data);
