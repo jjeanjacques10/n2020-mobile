@@ -29,9 +29,8 @@ class ChatMessageListItem extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.fromLTRB(8.0, 0.0, 64.0, 0.0),
       leading: CircleAvatar(
-          child: Text(
-        chatMessage.name.toUpperCase()[0],
-      )),
+        backgroundImage: AssetImage('assets/images/elisa.jpg'),
+      ),
       title: Text(chatMessage.content, textAlign: TextAlign.left),
     );
   }

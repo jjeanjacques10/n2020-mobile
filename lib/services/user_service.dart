@@ -9,29 +9,6 @@ class UserService {
 
   final ServiceConfig service = new ServiceConfig(_endpoint);
 
-  Future<List<UserModel>> findAll() async {
-    List<UserModel> lista = new List<UserModel>();
-
-    try {
-      Response response = await service.create().get(_resource);
-      if (response.statusCode == 200) {
-        response.data.forEach(
-          (value) {
-            print(value);
-            lista.add(
-              UserModel.fromJson(value),
-            );
-          },
-        );
-      }
-    } catch (error) {
-      print("Service Error: $error ");
-      throw error;
-    }
-
-    return lista;
-  }
-
   Future<int> create(UserModel userModel) async {
     try {
       Response response = await service.create().post(
@@ -129,22 +106,6 @@ class UserService {
       return retorno;
     } catch (error) {
       print("Service Error: $error ");
-      throw error;
-    }
-  }
-
-  Future<void> delete(UserModel userModel) async {
-    try {
-      String endpoint = _resource + "/" + userModel.id.toString();
-
-      Response response = await service.create().delete(
-            endpoint,
-          );
-
-      if (response.statusCode != 200) {
-        throw Exception("Não foi possível excluir o recurso!");
-      }
-    } catch (error) {
       throw error;
     }
   }
