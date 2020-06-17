@@ -29,7 +29,8 @@ class _BotPageState extends State<BotPage> {
 
     return Scaffold(
       appBar: new AppBar(
-        title: Text('Elisa'),
+        title: Text('Elisa '),
+        backgroundColor: Colors.lightBlue[700],
       ),
       body: Column(
         children: <Widget>[
