@@ -122,7 +122,7 @@ class _LoginPageState extends State<LoginPage> {
                                       userModel.password)
                                   .then((user) {
                                 try {
-                                  if (user is UserModel || user.id != 0) {
+                                  if (user is UserModel && user.id != 0) {
                                     Navigator.pushNamed(
                                       context,
                                       "/",
