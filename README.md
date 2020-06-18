@@ -1,4 +1,41 @@
-# N2020 - Mobile
+<h1 align="center"> N2020 - Goodbot Challenge <h1>
+
+<div style="text-align: center; ">
+    <table border="0">
+        <tr>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Login.jpg"
+                    width="300" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Home.jpg"
+                    width="300" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Chat.jpg"
+                    width="300" />
+                </br>
+            </td>
+        </tr>
+         <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/NovoUsuario.jpg"
+                    width="300" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/MenuLateral.jpg"
+                    width="300" />
+                </br>
+            </td>
+               <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/SugestaoMusica.jpg"
+                    width="300" />
+                </br>
+            </td>
+        </table>
+</div>
 
 ## 💻 Projeto
 
