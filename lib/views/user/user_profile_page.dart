@@ -175,21 +175,14 @@ class _UserProfilePageState extends State<UserProfilePage> {
                       print(userModel.toJson());
                       userService.update(userModel);
                       Navigator.pop(context);
-                      scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Atualizado com sucesso!',
-                          ),
-                        ),
-                      );
+                      showAlertDialog(context, "Perfil atualizado com sucesso",
+                          Icon(Icons.check));
+                    } else {
+                      showAlertDialog(
+                          context,
+                          "Não foi possivel atualizar o perfil",
+                          Icon(Icons.error));
                     }
-                    scaffoldKey.currentState.showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Não foi possível atualizar seu perfil',
-                        ),
-                      ),
-                    );
                   },
                 ),
               ],
@@ -199,4 +192,22 @@ class _UserProfilePageState extends State<UserProfilePage> {
       ),
     );
   }
+}
+
+void showAlertDialog(BuildContext context, String texto, Icon icone) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: icone,
+    content: Text(texto),
+  ); // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext ctx) {
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.of(ctx).pop(true);
+        Navigator.of(context).pop();
+      });
+      return alert;
+    },
+  );
 }

@@ -164,21 +164,12 @@ class _UserSignUpState extends State<UserSignUp> {
                       print(userModel.toJson());
                       userService.create(userModel);
                       Navigator.pop(context);
-                      scaffoldKey.currentState.showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            'Cadastrado com sucesso!',
-                          ),
-                        ),
-                      );
+                      showAlertDialog(
+                          context, "Cadastrado com sucesso", Icon(Icons.check));
+                    } else {
+                      showAlertDialog(context, "Não foi possivel se cadastrar",
+                          Icon(Icons.error));
                     }
-                    scaffoldKey.currentState.showSnackBar(
-                      SnackBar(
-                        content: Text(
-                          'Não foi cadastrar um novo professor',
-                        ),
-                      ),
-                    );
                   },
                 ),
               ],
@@ -188,4 +179,22 @@ class _UserSignUpState extends State<UserSignUp> {
       ),
     );
   }
+}
+
+void showAlertDialog(BuildContext context, String texto, Icon icone) {
+  // set up the AlertDialog
+  AlertDialog alert = AlertDialog(
+    title: icone,
+    content: Text(texto),
+  ); // show the dialog
+  showDialog(
+    context: context,
+    builder: (BuildContext ctx) {
+      Future.delayed(Duration(seconds: 3), () {
+        Navigator.of(ctx).pop(true);
+        Navigator.of(context).pop();
+      });
+      return alert;
+    },
+  );
 }
