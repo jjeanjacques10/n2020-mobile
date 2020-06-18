@@ -21,7 +21,21 @@ class ChatMessageListItem extends StatelessWidget {
       trailing: CircleAvatar(
         backgroundImage: NetworkImage(userModel.photoUrl),
       ),
-      title: Text(chatMessage.content, textAlign: TextAlign.right),
+      title: Container(
+        margin: EdgeInsets.only(left: 50),
+        padding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+        decoration: BoxDecoration(
+          color: Colors.blue[100],
+          shape: BoxShape.rectangle,
+          borderRadius: BorderRadius.all(
+            Radius.circular(17.0),
+          ),
+        ),
+        child: Text(
+          chatMessage.content,
+          textAlign: TextAlign.right,
+        ),
+      ),
     );
   }
 
@@ -31,7 +45,11 @@ class ChatMessageListItem extends StatelessWidget {
       leading: CircleAvatar(
         backgroundImage: AssetImage('assets/images/elisa.jpg'),
       ),
-      title: Text(chatMessage.content, textAlign: TextAlign.left),
+      title: Text(
+        chatMessage.content,
+        textAlign: TextAlign.left,
+        style: TextStyle(fontWeight: FontWeight.w500),
+      ),
     );
   }
 }
