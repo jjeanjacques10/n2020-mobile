@@ -166,9 +166,6 @@ class _UserSignUpState extends State<UserSignUp> {
                       Navigator.pop(context);
                       showAlertDialog(
                           context, "Cadastrado com sucesso", Icon(Icons.check));
-                    } else {
-                      showAlertDialog(context, "Não foi possivel se cadastrar",
-                          Icon(Icons.error));
                     }
                   },
                 ),
