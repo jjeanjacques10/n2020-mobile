@@ -53,7 +53,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 ### 🧾 Clone
 Clone o repositório em sua máquina com o comando
 
-```git clone https://github.com/jjeanjacques10/school_portal_app```
+```git clone https://github.com/jjeanjacques10/n2020-mobile```
 
 ### Remover erros dos packages
 ```flutter pub get```
