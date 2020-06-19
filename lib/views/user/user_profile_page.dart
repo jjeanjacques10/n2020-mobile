@@ -116,7 +116,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
         if (value.isEmpty) {
-          return 'O campo Foto é obrigatório.';
+          return 'Adicionar uma URL de imagem válida é obrigatório.';
         }
         return null;
       },
