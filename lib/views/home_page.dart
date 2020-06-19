@@ -272,7 +272,6 @@ class _HomePageState extends State<HomePage> {
                                     );
                                   },
                                 );
-                                //return buildListView(snapshot.data);
                               } else {
                                 return Center(
                                   child: Text("Nenhum curso cadastrado!"),
