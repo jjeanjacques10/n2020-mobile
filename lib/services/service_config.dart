@@ -18,7 +18,6 @@ class ServiceConfig {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions request) async {
-          //request.headers["token"] = "sa09f0dfkjfkashd";
           return request;
         },
         onResponse: (Response response) async {

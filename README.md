@@ -1,4 +1,41 @@
-# N2020 - Mobile
+<h1 align="center"> N2020 - Goodbot Challenge <h1>
+
+<div style="text-align: center; justify-content: center; align-items: center; ">
+    <table border="0" style="text-align: center; justify-content: center; align-items: center; ">
+        <tr>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Login.jpg"
+                    width="250" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Home.jpg"
+                    width="250" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/Chat.jpg"
+                    width="250" />
+                </br>
+            </td>
+        </tr>
+         <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/NovoUsuario.jpg"
+                    width="250" />
+                </br>
+            </td>
+            <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/MenuLateral.jpg"
+                    width="250" />
+                </br>
+            </td>
+               <td style="text-align: center">
+                <img src="https://github.com/jjeanjacques10/n2020-mobile/blob/master/screenshots/SugestaoMusica.jpg"
+                    width="250" />
+                </br>
+            </td>
+        </table>
+</div>
 
 ## 💻 Projeto
 
@@ -16,7 +53,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 ### 🧾 Clone
 Clone o repositório em sua máquina com o comando
 
-```git clone https://github.com/jjeanjacques10/school_portal_app```
+```git clone https://github.com/jjeanjacques10/n2020-mobile.git```
 
 ### Remover erros dos packages
 ```flutter pub get```

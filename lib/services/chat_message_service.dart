@@ -74,39 +74,4 @@ class ChatMessageService {
     }
     return lista;
   }
-
-  Future<int> update(ChatMessage chatMessageModel) async {
-    try {
-      String endpoint = _resource + "/" + chatMessageModel.name.toString();
-
-      Response response = await service.create().put(
-            endpoint,
-            data: chatMessageModel.toJson(),
-          );
-
-      var retorno = (response.data["id"] is String)
-          ? int.parse(response.data["id"])
-          : response.data["id"];
-      return retorno;
-    } catch (error) {
-      print("Service Error: $error ");
-      throw error;
-    }
-  }
-
-  Future<void> delete(ChatMessage chatMessageModel) async {
-    try {
-      String endpoint = _resource + "/" + chatMessageModel.name.toString();
-
-      Response response = await service.create().delete(
-            endpoint,
-          );
-
-      if (response.statusCode != 200) {
-        throw Exception("Não foi possível excluir o recurso!");
-      }
-    } catch (error) {
-      throw error;
-    }
-  }
 }

@@ -3,6 +3,7 @@ import 'package:n2020mobile/models/suggestions_model.dart';
 import 'package:n2020mobile/models/users_model.dart';
 import 'package:n2020mobile/services/suggestions_service.dart';
 import 'package:n2020mobile/widgets/suggestion_card_item.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -57,11 +58,15 @@ class _HomePageState extends State<HomePage> {
                   );
                 }),
             ListTile(
-                leading: Icon(Icons.warning),
-                title: Text("Denunciar abuso"),
-                onTap: () {
-                  debugPrint('Ativei denúncia');
-                }),
+              leading: Icon(Icons.local_hospital),
+              title: Text("Ligar para CVV"),
+              onTap: () => launch("tel://188"),
+            ),
+            ListTile(
+              leading: Icon(Icons.warning),
+              title: Text("Disque denúncia"),
+              onTap: () => launch("tel://100"),
+            ),
             ListTile(
                 leading: Icon(Icons.exit_to_app),
                 title: Text("Sair"),
