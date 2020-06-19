@@ -3,7 +3,7 @@ import 'package:n2020mobile/models/chat_message.dart';
 import 'package:n2020mobile/services/service_config.dart';
 
 class ChatMessageService {
-  static final String _endpoint = "https://api-n2020.herokuapp.com/"; 
+  static final String _endpoint = "https://api-n2020.herokuapp.com/";
 
   static final String _resource = 'messages';
 
@@ -43,6 +43,8 @@ class ChatMessageService {
             ? int.parse(response.data["id"])
             : response.data["id"];
         return retorno;
+      } else {
+        return 1;
       }
     } catch (error) {
       print("Service Error: $error ");

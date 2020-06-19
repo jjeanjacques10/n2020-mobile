@@ -55,7 +55,11 @@ class _HomePageState extends State<HomePage> {
                     context,
                     '/profile',
                     arguments: userModel,
-                  );
+                  ).then((value) {
+                    setState(() {
+                      userModel = value;
+                    });
+                  });
                 }),
             ListTile(
               leading: Icon(Icons.local_hospital),

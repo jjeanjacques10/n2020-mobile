@@ -118,8 +118,7 @@ class _LoginPageState extends State<LoginPage> {
                               formKey.currentState.save();
 
                               userService
-                                  .getLogin(userModel.email.replaceAll("	", ""),
-                                      userModel.password)
+                                  .getLogin(userModel.email, userModel.password)
                                   .then((user) {
                                 try {
                                   if (user is UserModel && user.id != 0) {

@@ -30,6 +30,8 @@ class UserService {
             ? int.parse(response.data["id"])
             : response.data["id"];
         return retorno;
+      } else {
+        return 1;
       }
     } catch (error) {
       print("Service Error: $error ");
@@ -45,6 +47,8 @@ class UserService {
       if (response.statusCode == 200) {
         var retorno = UserModel.fromJson(response.data);
         return retorno;
+      } else {
+        return null;
       }
     } catch (error) {
       print("Service Error: $error ");
@@ -70,7 +74,6 @@ class UserService {
           );
 
       if (response.statusCode == 200) {
- 
         if (response.data[0].length != 0) {
           var retorno = UserModel.fromJson(response.data[0]);
           return retorno;

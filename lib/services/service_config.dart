@@ -1,12 +1,10 @@
 import 'package:dio/dio.dart';
 
 class ServiceConfig {
-
   String _url = "";
-  int timeout = 8500;
+  int timeout = 10500;
 
-  ServiceConfig(this._url, {this.timeout = 7500} );
-
+  ServiceConfig(this._url, {this.timeout = 9500});
 
   Dio create() {
     Dio dio = Dio(

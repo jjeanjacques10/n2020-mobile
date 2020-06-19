@@ -172,9 +172,9 @@ class _UserProfilePageState extends State<UserProfilePage> {
                   onPressed: () {
                     if (formKey.currentState.validate()) {
                       formKey.currentState.save();
-      
+
                       userService.update(userModel);
-                      Navigator.pop(context);
+                      Navigator.pop(context, userModel);
                       showAlertDialog(context, "Perfil atualizado com sucesso",
                           Icon(Icons.check));
                     } else {
