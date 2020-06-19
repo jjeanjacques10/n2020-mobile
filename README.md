@@ -64,6 +64,14 @@ Clone o repositório em sua máquina com o comando
 
 Este comando ou selecione **Run and Debug**
 
+## Equipe
+
+- Ahalan Bessa Windson – RM 81705 
+- Gabriel Siqueira Petillo – RM 81238 
+- Jean Jacques Nascimento Barros – RM 81524 
+- Vinicius Mota Pereira Silva – RM 80101 
+- Vitor de Menezes Rico – RM 80515
+
 ---
 
 Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
