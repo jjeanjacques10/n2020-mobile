@@ -161,7 +161,7 @@ class _UserSignUpState extends State<UserSignUp> {
                   onPressed: () {
                     if (formKey.currentState.validate()) {
                       formKey.currentState.save();
-                      print(userModel.toJson());
+                   
                       userService.create(userModel);
                       Navigator.pop(context);
                       showAlertDialog(

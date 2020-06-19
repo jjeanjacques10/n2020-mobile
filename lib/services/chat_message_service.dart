@@ -17,7 +17,6 @@ class ChatMessageService {
       if (response.statusCode == 200) {
         response.data.forEach(
           (value) {
-            print(value);
             lista.add(
               ChatMessage.fromJson(value),
             );
@@ -61,7 +60,6 @@ class ChatMessageService {
       if (response.statusCode == 200) {
         response.data.forEach(
           (value) {
-            print(value);
             lista.add(
               ChatMessage.fromJson(value),
             );

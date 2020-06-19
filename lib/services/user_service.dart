@@ -70,7 +70,7 @@ class UserService {
           );
 
       if (response.statusCode == 200) {
-        print(response.data);
+ 
         if (response.data[0].length != 0) {
           var retorno = UserModel.fromJson(response.data[0]);
           return retorno;

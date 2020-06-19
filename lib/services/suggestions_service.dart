@@ -17,7 +17,6 @@ class SuggestionService {
       if (response.statusCode == 200) {
         response.data.forEach(
           (value) {
-            print(value);
             lista.add(
               SuggestionModel.fromJson(value),
             );
