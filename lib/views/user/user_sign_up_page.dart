@@ -48,7 +48,7 @@ class _UserSignUpState extends State<UserSignUp> {
               OutlineInputBorder(borderRadius: BorderRadius.circular(16.0))),
       validator: (value) {
         if (value.isEmpty) {
-          return 'O campo Email é obrigatório.';
+          return 'Adicione um Email válido Email é obrigatório.';
         }
         return null;
       },

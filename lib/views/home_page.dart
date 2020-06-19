@@ -253,7 +253,7 @@ class _HomePageState extends State<HomePage> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                    'Erro ao carregar a lista de cursos. \n Detalhes: $erroMessage'),
+                                    'Erro ao carregar a lista de Bots. \n Detalhes: $erroMessage'),
                               ),
                             );
                           } else {
@@ -274,7 +274,7 @@ class _HomePageState extends State<HomePage> {
                                 );
                               } else {
                                 return Center(
-                                  child: Text("Nenhum curso cadastrado!"),
+                                  child: Text("Nenhum Bot cadastrado!"),
                                 );
                               }
                             } else {
