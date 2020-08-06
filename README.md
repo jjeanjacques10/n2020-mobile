@@ -48,7 +48,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
 - [Dart](https://dart.dev/)
 - [Flutter](https://flutter.dev/)
 
-## Get Started
+## Para utilizar o projeto
 
 ### 🧾 Clone
 Clone o repositório em sua máquina com o comando
@@ -74,4 +74,4 @@ Este comando ou selecione **Run and Debug**
 
 ---
 
-Developed by [Jean Jacques](https://github.com/jjeanjacques10) 
+Desenvolvido por [Jean Jacques](https://github.com/jjeanjacques10) 
